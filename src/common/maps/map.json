@@ -1,0 +1,164 @@
+{
+    "locations": [
+        {
+            "id": "tvr",
+            "name": "Thiruvallur",
+            "members": 420000
+        },
+        {
+            "id": "ch",
+            "name": "Chennai",
+            "members": 560000
+        },
+        {
+            "id": "vl",
+            "name": "Vellore",
+            "members": 650000
+        },
+        {
+            "id": "kp",
+            "name": "Kancheepuram",
+            "members": 450000
+        },
+        {
+            "id": "kg",
+            "name": "Krishnagiri",
+            "members": 330000
+        },
+        {
+            "id": "dp",
+            "name": "Dharmapuri",
+            "members": 260000
+        },
+        {
+            "id": "er",
+            "name": "Erode",
+            "members": 400000
+        },
+        {
+            "id": "nm",
+            "name": "Namakkal",
+            "members": 280000
+        },
+        {
+            "id": "tvm",
+            "name": "Thiruvannamalai",
+            "members": 320000
+        },
+        {
+            "id": "cl",
+            "name": "Cuddalore",
+            "members": 430000
+        },
+        {
+            "id": "ar",
+            "name": "Ariyalur",
+            "members": 130000
+        },
+        {
+            "id": "np",
+            "name": "Nagapattinam",
+            "members": 240000
+        },
+        {
+            "id": "tv",
+            "name": "Thiruvarur",
+            "members": 180000
+        },
+        {
+            "id": "tj",
+            "name": "Tanjavur",
+            "members": 420000
+        },
+        {
+            "id": "tr",
+            "name": "Trichy",
+            "members": 480000
+        },
+        {
+            "id": "kr",
+            "name": "Karur",
+            "members": 320000
+        },
+        {
+            "id": "dg",
+            "name": "Dindugal",
+            "members": 190000
+        },
+        {
+            "id": "tp",
+            "name": "Thiruppur",
+            "members": 234567
+        },
+        {
+            "id": "cb",
+            "name": "Coimbatore",
+            "members": 410000
+        },
+        {
+            "id": "ng",
+            "name": "Nilagiri",
+            "members": 160000
+        },
+        {
+            "id": "tn",
+            "name": "Theni",
+            "members": 470000
+        },
+        {
+            "id": "mr",
+            "name": "Madurai",
+            "members": 425000
+        },
+        {
+            "id": "pk",
+            "name": "Pudhukottai",
+            "members": 230000
+        },
+        {
+            "id": "sg",
+            "name": "Sivagangai",
+            "members": 360000
+        },
+        {
+            "id": "vn",
+            "name": "Virudhunagar",
+            "members": 415000
+        },
+        {
+            "id": "rp",
+            "name": "Ramanadhapuram",
+            "members": 340000
+        },
+        {
+            "id": "tk",
+            "name": "Toothukudi",
+            "members": 370000
+        },
+        {
+            "id": "tnv",
+            "name": "Thirunelveli",
+            "members": 410000
+        },
+        {
+            "id": "kk",
+            "name": "Kanyakumari",
+            "members": 174000
+        },
+        {
+            "id": "pb",
+            "name": "Perambalur",
+            "members": 214000
+        },
+        {
+            "id": "sl",
+            "name": "Salem",
+            "members": 460000
+        },
+        {
+            "id": "vp",
+            "name": "Villupuram",
+            "members": 340000
+        }
+    ]
+}

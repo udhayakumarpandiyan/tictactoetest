@@ -1,0 +1,122 @@
+@import '../../styles/vars.scss';
+@import '../../styles/mixins.scss';
+
+.usercard_container {
+    width: 280px;
+    height: 180px;
+    margin: 20px 0px;
+    padding: 10px;
+    border: 1px solid #cfcfcf;
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    cursor: pointer;
+
+    @include media-mobile {
+        width: 180px;
+        height: 120px;
+    }
+
+    @include media-tab {
+        width: 180px;
+        height: 120px;
+
+    }
+
+    .top_content {
+        display: flex;
+        justify-content: flex-end;
+
+        .active_switch {
+            background-color: #dedede;
+        }
+
+        .ant-switch {
+            min-width: 40px;
+        }
+
+        .ant-switch-checked {
+            background-color: #ffbb00;
+        }
+
+    }
+
+    .card_content {
+        display: flex;
+        padding-top: 20px;
+        justify-content: flex-start;
+        align-items: center;
+
+        @include media-mobile {
+            padding-top: 6px;
+        }
+
+        @include media-tab {
+            padding-top: 6px;
+
+        }
+
+        img {
+            width: 90px;
+            height: 90px;
+            background: round;
+            background-color: #dedede;
+            border-radius: 50%;
+
+            @include media-mobile {
+                width: 45px;
+                height: 45px;
+            }
+
+            @include media-tab {
+                width: 45px;
+                height: 45px;
+
+            }
+        }
+
+        .bottom_content {
+            display: flex;
+            flex-direction: column;
+            font-weight: 500;
+            justify-content: space-between;
+            padding: 0px 10px;
+
+            label {
+                font-size: 14px;
+
+                @include media-mobile {
+                    font-size: 12px;
+                }
+
+                @include media-tab {
+                    font-size: 12px;
+
+                }
+
+            }
+
+            .name {
+                font-size: 20px;
+
+                @include media-mobile {
+                    font-size: 16px;
+                }
+
+                @include media-tab {
+                    font-size: 16px;
+
+                }
+
+            }
+        }
+
+
+    }
+
+
+}
+
+.usercard_container:hover {
+    border: 1px solid #ffbb00;
+    box-shadow: 0px 0px 8px 0px rgba(255, 100, 0, 0.5);
+}

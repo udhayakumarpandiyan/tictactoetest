@@ -1,0 +1,181 @@
+@import '../../../styles/vars.scss';
+@import '../../../styles/common.scss';
+
+.editor_page {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin: 10px 150px;
+
+    @include media-tab {
+        justify-content: center;
+        margin: 10px;
+    }
+
+    @include media-mobile {
+        justify-content: center;
+        margin: 10px;
+    }
+
+    @include media-desktop-sm {
+        margin: 10px 50px;
+    }
+
+    .editor_container {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        margin: 10px 0px 50px 0px;
+
+        .editor_form {
+            width: 100%;
+            height: 80%;
+            border: 1px solid rgba(250, 172, 3, 0.5);
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            padding: 60px;
+
+            @include media-mobile {
+                align-items: center;
+                margin-bottom: 40px;
+
+            }
+
+            @include media-tab {
+                align-items: center;
+                margin-bottom: 40px;
+            }
+
+            div {
+                width: 100%;
+                text-align: right;
+                padding: 10px;
+
+                @include media-mobile {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    padding: 10px 0px;
+                }
+
+                @include media-tab {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    padding: 10px 0px;
+                }
+
+                select {
+                    margin: 8px 0px 0px 8px;
+                    padding: 2px 4px;
+                    width: 52%;
+                    height: 32px;
+                    border: 1px solid #cacaca;
+                    border-radius: 4px;
+
+                    @include media-mobile {
+                        margin-top: 10px;
+                        margin-left: 0px;
+                        width: 100%;
+                    }
+
+                    @include media-tab {
+                        margin-top: 10px;
+                        margin-left: 0px;
+                        width: 100%;
+                    }
+                }
+
+                input {
+                    margin: 8px 0px 0px 10px;
+                    padding: 2px 6px;
+                    width: 50%;
+                    height: 26px;
+                    border: 1px solid #cacaca;
+                    border-radius: 4px;
+
+                    @include media-mobile {
+                        margin-top: 10px;
+                        margin-left: 0px;
+                        width: 96%;
+                    }
+
+                    @include media-tab {
+                        margin-top: 10px;
+                        margin-left: 0px;
+                        width: 96%;
+                    }
+                }
+
+            }
+
+            button {
+                background-color: $primaryColor;
+                margin: 20px 10px 0px 0px;
+                border: none;
+                border-radius: 4px;
+                color: #ffffff;
+                text-transform: uppercase;
+                font-weight: 400;
+                font-size: 16px;
+                padding: 8px 20px;
+                cursor: pointer;
+
+                @include media-mobile {
+                    padding: 15px 20px;
+                }
+
+                @include media-tab {
+                    padding: 15px 20px;
+                }
+            }
+
+            button:hover {
+                box-shadow: 0 0 8px 0 rgba(209, 1, 1, 0.7);
+            }
+        }
+
+
+    }
+
+    .signup_container {
+        width: 30%;
+
+        @include media-mobile {
+            width: 10%;
+        }
+
+        @include media-tab {
+            width: 60%;
+        }
+
+        @include media-desktop-sm {
+            width: 40%;
+        }
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 20px 40px 20px;
+        border: 1px solid #dadada;
+        border-radius: 6px;
+        box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.15);
+
+        input {
+            @extend .text_input;
+            width: 80%;
+            font-size: 16px;
+            margin: 10px 0px;
+        }
+
+        button {
+            @extend .button;
+            padding: 2px 50px;
+            margin: 20px 0px;
+            text-transform: uppercase;
+        }
+    }
+}

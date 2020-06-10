@@ -1,0 +1,124 @@
+@import '../../../styles/vars.scss';
+@import '../../../styles/common.scss';
+
+
+.module_container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0px 10px;
+    .content{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .content_container {
+        margin-top: 50px;
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        .input{
+            
+            height: 40px;
+            margin: 10px 0px;
+            border: 1px solid #aeaeae;
+            padding: 2px 10px;
+            border-radius: 4px;
+        }
+        .quantity-container{
+            display: flex;
+            align-items: center;
+            margin: 10px 0px;
+            input{
+                height: 40px;
+
+            }
+            .ant-select-selection--single{
+               width: 160px;
+            
+             }
+        
+        }
+        .bill-container{
+            display: flex;
+            flex-direction: column;
+            .bill-top-container{
+                padding: 10px;
+                display: flex;
+                justify-content: space-between;
+                border: 1px solid #e8e8e8;
+                border-bottom: none;
+            }
+            .total-container{
+                padding: 0px 10px;
+                height: 40px;
+                border: 1px solid #e8e8e8;
+                border-top: none;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                .label{
+                    padding-right: 50px;
+                }
+                .amount{
+                    font-weight: bold;
+                    text-align: center;
+                }
+            }
+    }
+    }
+    .pricelist-container{
+        
+        .ant-select {
+            min-width: 150px !important;
+            margin: 10px 20px 30px 20px;
+            height: 26px;
+            border: none;
+            outline: none;
+        }
+    }
+    
+  
+}
+.row_container {
+    width: 100%;
+    padding: 20px 0px;
+    .column_container{
+        padding-left: 15px;
+        padding-right: 15px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+    }
+    .sub_title{
+        font-size: 20px;
+        font-weight: 500;
+        color: #222222;
+        padding-bottom: 20px;
+    }
+}
+
+
+.ant-select-selection__placeholder{
+    top: 40%;
+}
+.ant-select-search__field__wrap{
+    height: 40px;
+    margin-top: 0px;
+  
+}
+.ant-select-selection--single{
+    height: 40px;
+}
+.ant-select-combobox
+{
+    height: 40px !important;
+}
+.ant-input-number{
+    height: 40px;
+    margin: 0px 20px;
+}

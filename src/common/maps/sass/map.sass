@@ -1,0 +1,47 @@
+@import './../../../shell/sass/util/mixins.sass'
+
+.Map
+    width: 100%
+    border: 1px solid #ff00ff
+    & .mapContainer
+        width: 100%
+        min-height: 200px
+        & .legendContainer
+            display: flex
+            flex-direction: column
+            align-items: center
+            .map-legend
+                div
+                    display: inline-block
+                @media screen and (max-width: 991px)
+                    flex-direction: row
+                    flex-flow: wrap
+                    .legend
+                        width: 200px
+                        div
+                            display: inline-block
+            & .legendLabel
+                font-size: 20px
+                line-height: 60px
+        & .map-tooltip
+           	position: fixed
+            width: 160px
+            padding: 10px
+            background-color: rgba(51,51,51,0.8)
+            border-radius: 8px
+            color: #fff
+            & .tooltip-state
+                display: block
+            & .tooltip-arrow
+                position: absolute
+                bottom: -8px
+                left: 72px
+                width: 0
+                height: 0
+                border-left: 8px solid transparent
+                border-right: 8px solid transparent
+                border-top: 8px solid rgba(51,51,51,0.8)
+
+
+			
+            

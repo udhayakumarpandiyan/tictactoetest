@@ -1,0 +1,103 @@
+@import '../../../styles/vars.scss';
+@import '../../../styles/common.scss';
+
+.module_container {
+    width: 100%;
+    margin: 0px 10px;
+
+    @include media-mobile {
+        margin: 10px;
+    }
+
+    @include media-tab {
+        margin: 10px;
+    }
+
+    @include media-desktop-sm {
+        margin: 30px 10px;
+    }
+
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    text-align: left;
+
+    .row_container {
+        width: 100%;
+        padding: 20px 0px;
+        .sub_title{
+            font-size: 20px;
+            font-weight: 500;
+            color: #222222;
+            padding-bottom: 20px;
+        }
+    }
+
+    .page-title {
+        font-size: 26px;
+        font-weight: 500;
+        color: #222222;
+        width: 100%;
+        text-align: left;
+        margin-left: 0px;
+        line-height: 60px;
+    }
+
+    .horizontal-line {
+        margin: 0px 00px 10px 0px;
+        border: 0.5px solid #dadada;
+
+    }
+
+    table {
+        border: 1px solid #d6cfcf !important;
+        border-collapse: separate;
+        border-spacing: 0px;
+    }
+
+    .ant-table-thead>tr>th {
+        color: $primaryColor;
+        font-weight: 600;
+        text-align: left;
+        background: none;
+        padding: 12px 16px;
+        border-bottom: 1px solid #d6cfcf;
+        transition: background .3s ease;
+    }
+    .ant-table-thead>tr>th .ant-table-header-column .ant-table-column-sorters {
+        display: table;
+    }
+    
+    .ant-table-row-cell-ellipsis,
+    .ant-table-row-cell-ellipsis .ant-table-column-title {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .ant-table-thead>tr>th .ant-table-header-column {
+        display: inline-block;
+        max-width: 100%;
+        vertical-align: top;
+    }
+
+    .ant-table-column-sorters {
+        display: flex;
+    }
+
+
+    .ant-table-tbody>tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected)>td {
+        background: #a6c1ce;
+    }
+
+    .ant-table-tbody>tr>td {
+        border-bottom: 1px solid #e8e8e8;
+        transition: all .3s, border 0s;
+        padding: 10px 16px;
+        overflow-wrap: break-word;
+    }
+    .canvasjs-chart-credit{
+        display: none;
+    }
+
+}
