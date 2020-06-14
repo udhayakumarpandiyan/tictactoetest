@@ -16,6 +16,7 @@ export const API = {
     login: `${AUTH}v1/login/`,
     forgot: `${AUTH}forgot_password/`,
     register: `${AUTH}register`,
+    authenticate: `${AUTH}authenticate`,
     
   }
   

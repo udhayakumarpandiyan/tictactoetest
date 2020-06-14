@@ -25,25 +25,29 @@ const onRegisterSuccess = payload => {
 };
 export const userLogin = (user) => {
     return (dispatch) => {
-        // Service.getInfo(user).then((response) => response.json())
-        //     .then((responseJson) => {
-        //         dispatch(getInformation(responseJson))
-        //     }
-        //     )
-        //     .catch(error => {
-        //         dispatch(getInformation({ title: "Error" }))
-        //     })
-        dispatch(onLoginSuccess(true));
+        fetch(API.auth.authenticate, {
+            method: 'POST',
+            body: JSON.stringify(user),
+            headers: { 'Content-Type': 'application/json' },
+        }).then((response) => response.json())
+            .then((responseJson) => {
+                dispatch(onLoginSuccess(responseJson));
+            }
+            )
+            .catch(error => {
+                dispatch(onLoginSuccess(error))
+            })
+        
     };
 
 }
 
 export const registerUser = (user) => {
-    console.log("asdsa:", API.auth, user)
     return (dispatch) => {
         fetch(API.auth.register, {
             method: 'POST',
-            body: JSON.stringify(user)
+            body: JSON.stringify(user),
+            headers: { 'Content-Type': 'application/json' },
         }).then((response) => response.json())
             .then((responseJson) => {
                 dispatch(onRegisterSuccess(responseJson));

@@ -18,9 +18,6 @@ const SignInForm = (props) => {
     };
 
 
-    function onLogin() {
-        props.onLoginClick();
-    }
     function onSubmit() {
         let user = {};
         props.onLoginClick(user);
@@ -39,6 +36,16 @@ const SignInForm = (props) => {
         // else {
         //     callback();
         // }
+    }
+
+    const onLogin = (event) => {
+
+        event.preventDefault();
+        props.form.validateFieldsAndScroll((err, values) => {
+            if (!err) {
+                props.userLogin({ username: values.username, password: values.password });
+            }
+        });
     }
 
     const onInputChange = (e, elementName) => {
@@ -62,18 +69,18 @@ const SignInForm = (props) => {
                     <Form.Item>
                         <Icon type="user" style={{ fontSize: "20px", marginRight: "10px" }} />
 
-                        {getFieldDecorator('userName', {
+                        {getFieldDecorator('username', {
                             rules: [{
                                 required: true, message: 'Please enter user name',
                             },
                             {
                                 validator: validateUserName
                             }],
-                            onChange: (e) => onInputChange(e, 'userName'),
+                            onChange: (e) => onInputChange(e, 'username'),
                             initialValue: null
                         })(
-                            <Input type="userName" 
-                                name="userName" placeholder="Username" />
+                            <Input type="username"
+                                name="username" placeholder="Username" />
                         )}
 
                     </Form.Item>
@@ -92,7 +99,7 @@ const SignInForm = (props) => {
                             onChange: (e) => onInputChange(e, 'password'),
                             initialValue: null
                         })(
-                            <Input.Password type="password" 
+                            <Input.Password type="password"
                                 name="password" placeholder="Password" />
                         )}
 

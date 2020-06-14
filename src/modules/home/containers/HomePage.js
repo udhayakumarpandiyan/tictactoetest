@@ -36,35 +36,17 @@ class HomePage extends Component {
     }
 
 
-    onLoginClick = (user) => {
+    userLogin = (user) => {
         this.props.userLogin(user);
     }
 
-    onRegisterClick = (user) => {
+    registerUser = (userData) => {
+        this.props.registerUser(userData);
+    }
 
-        let testuser = {
-            customers: [],
-            dealers: [],
-            products: [],
-            username: "jayam-electricals",
-            hash: "sdffsrdfgdf",
-            firstName: "jayam",
-            lastName: "electricals",
-            mobileNumber: "9500167390",
-            whatsappNumber: "9500818390",
-            emailId: "jayamelectricals1@gmail.com",
-            businessName: "Jayam Electricals",
-            businessType: "Electricals",
-            businessNature: "Retailer",
-            businessAddres: "A.R.S complex, Kumbakonam Road, Panikkankuppam, Panruti, Cuddalore Dt ...",
-            gstin: "GSTINQDDsdfdsf823ENSDF",
-            profilePicture: "",
-            createdDate: "2020 - 06 - 13T10: 34: 49.240+00: 00"
 
-        };
-        this.setState({ showSignUp: true });
-
-        //this.props.registerUser(testuser);
+    goBack = () => {
+        this.setState({ showSignUp: !this.state.showSignUp });
     }
 
     render() {
@@ -72,10 +54,11 @@ class HomePage extends Component {
             {/* <img src={HomeBGIcon} className="bg_image" /> */}
             <div className="home_content">
                 {
-                    this.state.showSignUp ? <SignUp /> :
+                    this.state.showSignUp ? <SignUp onBackButtonClick={this.goBack}
+                        registerUser={this.registerUser} /> :
                         <SignIn
-                            onLoginClick={this.onLoginClick}
-                            onSignupClick={this.onRegisterClick} />
+                            userLogin={this.userLogin}
+                            onSignupClick={this.goBack} />
                 }
             </div>
         </div>)
