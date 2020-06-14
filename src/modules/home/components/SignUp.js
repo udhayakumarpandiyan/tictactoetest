@@ -29,7 +29,7 @@ const SignUp = (props) => {
             <Col className="signup_container">
                 <div className="logo-container">
                     <img src={LogoIcon} className="logo" />
-                    <label>tackmyshop</label>
+                    <label>Trackmyshop</label>
                 </div>
                 <div className="inner_container">
                     <label className="label">Business Info </label>

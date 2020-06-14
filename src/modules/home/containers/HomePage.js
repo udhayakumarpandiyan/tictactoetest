@@ -62,8 +62,9 @@ class HomePage extends Component {
             createdDate: "2020 - 06 - 13T10: 34: 49.240+00: 00"
 
         };
+        this.setState({ showSignUp: true });
 
-        this.props.registerUser(testuser);
+        //this.props.registerUser(testuser);
     }
 
     render() {

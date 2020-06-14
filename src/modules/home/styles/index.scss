@@ -68,7 +68,7 @@
                     margin-bottom: 10px;
                     .ant-form-explain{
                         display: flex;
-                        padding-left: 3px;
+                        padding-left: 32px;
                     }
                 }
                 .button-container{
@@ -91,10 +91,24 @@
                 display: flex;
                 justify-content: flex-start;
                 align-items: center;
+                @include media-mobile{
+                   font-size: 36px;
+                }
+                @include media-tab{
+                    font-size: 36px;
+                 }
                 .logo{
                     object-fit: contain;
                     width: 48px;
                     height: 40px;
+                    @include media-mobile{
+                        width: 96px;
+                        height: 80px;
+                    }
+                    @include media-tab{
+                        width: 96px;
+                        height: 80px;
+                    }
                 }
             }
 
@@ -104,7 +118,16 @@
                 margin: 10px 0px;
                 height: 36px;
                 border-radius: 4px;
-                padding-right: 20px;
+                padding-right: 30px;
+                @include media-mobile{
+                    height: 42px;
+                    font-size: 18px;
+                    
+                 }
+                 @include media-tab{
+                    height: 42px;
+                    font-size: 18px;
+                 }
             }
 
             .button {
@@ -114,6 +137,12 @@
                 background: linear-gradient($primaryColor, $secondaryColor);
                 text-transform: uppercase;
                 font-weight: 600;
+                @include media-mobile{
+                    width: 130px;
+                    height: 42px;
+                    font-size: 16px;
+                    
+                 }
             }
 
                 .forgot {
@@ -135,14 +164,21 @@
 
             .signup_now {
                 font-size: 14px;
+                @include media-mobile{
+                    font-size: 16px;
+                 }
 
                 span {
                     font-size: 14px;
+                    @include media-mobile{
+                        font-size: 16px;
+                     }
                     font-weight: 500;
                     cursor: pointer;
                     padding-left: 10px;
                     color: $secondaryColor;
                     font-weight: bold;
+                    text-transform: uppercase;
                 }
 
                 span:hover {
@@ -193,10 +229,24 @@
                 display: flex;
                 justify-content: flex-start;
                 align-items: center;
+                @include media-mobile{
+                    font-size: 36px;
+                }
+                @include media-tab{
+                    font-size: 36px;
+                }
                 .logo{
                     object-fit: contain;
                     width: 48px;
                     height: 40px;
+                    @include media-mobile{
+                        width: 96px;
+                        height: 80px;
+                    }
+                    @include media-tab{
+                        width: 96px;
+                        height: 80px;
+                    }
                 }
             }
             .button {

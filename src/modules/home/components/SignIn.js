@@ -51,7 +51,7 @@ const SignInForm = (props) => {
             <Col className="signin_container">
                 <div className="logo-container">
                     <img src={LogoIcon} className="logo" />
-                    <label>tackmyshop</label>
+                    <label>Trackmyshop</label>
                 </div>
                 <Form className="form"
                     name="basic"
