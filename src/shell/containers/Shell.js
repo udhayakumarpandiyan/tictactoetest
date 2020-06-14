@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 
 import Sidebar from '../components/Sidebar';
 import AppHeader from '../components/AppHeader';
-import '../styles/index.scss';
 import MainContent from '../components/Content';
+import HomePage from '../../modules/home/containers/HomePage';
+import { Layout, Button, Drawer, Icon, Menu } from 'antd';
+import { LogoIcon } from '../../constants/Icons';
+
 import { connect } from 'react-redux';
 import { changeLanguage } from '../../store/actions/language';
 import RoutePath from '../../route';
 import history from '../../route/history';
-import { LogoIcon, PMKIcon, ADMKIcon } from '../../constants/Icons';
 
-import { Layout, Button, Drawer, Icon, Menu } from 'antd';
+import '../styles/index.scss';
 import 'antd/dist/antd.css';
-import HomePage from '../../modules/home/containers/HomePage';
+
 
 const { Header, Footer, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -179,7 +181,7 @@ class Shell extends Component {
                                 backgroundColor: "#fff",
                                 margin: '25px 36px'
                             }}>
-                                <img src={ADMKIcon}
+                                <img src={''}
                                     style={{
                                         height: "72px", width: "72px",
                                         borderRadius: '100em'
@@ -243,7 +245,7 @@ class Shell extends Component {
                 </div >
             </div>
                 :
-                <div>
+                <div className="home_container">
                     <HomePage />
                 </div>
             }

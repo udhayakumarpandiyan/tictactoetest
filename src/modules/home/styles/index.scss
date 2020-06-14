@@ -10,62 +10,77 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-   // background-color: rgba(32, 166, 243, 0.35);
+    //background-color: rgba(32, 166, 243, 0.065);
     
-    .bg_image
-    {
-        //width: 100vw;
-        height: 100vh;
-        object-fit: fill;
-        opacity: 0.65;
-        position: absolute;
-        top: 0px;
-        @include media-mobile {
-           object-fit: contain;
-        }
-
-        @include media-tab {
-            object-fit: contain;
-        }
-    
-    }
     .home_content {
         display: flex;
         width: 100%;
-        height: 100vh;
-        position: absolute;
-        top: 0px;
         align-items: center;
         justify-content: center;
-
-
     }
 
     .outer-container{
         width: 24%;
 
         @include media-mobile {
-            width: 80%;
+            width: 100%;
         }
 
         @include media-tab {
-            width: 66%;
+            width: 100%;
         }
 
         @include media-desktop-sm {
-            width: 60%;
+            width: 100%;
         }
+        margin : 150px 0px;
         padding: 30px 20px 20px 20px;
         background-color: #ffffff;
         border-radius: 4px;
-        //border: 0.5px solid #043563;
-        box-shadow: 1px 1px 10px 2px rgba(4, 53, 99,0.8);
+        border: 0.5px solid rgba(4, 53, 99,0.5);;
+        box-shadow: 1px 1px 10px 2px rgba(4, 53, 99,0.4);
+        @include media-mobile {
+            border: none;
+            box-shadow: none;
+            justify-content: flex-start;
+        }
+        @include media-tab {
+            border: none;
+            box-shadow: none;
+            justify-content: flex-start;
+        }
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 
         .signin_container {
+            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center;
+            .form{
+                width: 90%;
+                .ant-form-item{
+                    width: 100%;
+                    margin-bottom: 10px;
+                    .ant-form-explain{
+                        display: flex;
+                        padding-left: 3px;
+                    }
+                }
+                .button-container{
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    .ant-form-item-control{
+                        display: flex;
+                        justify-content: center;
+                    }
+                }
+            }
             
             .logo-container{
                 width: 100%;
@@ -85,10 +100,11 @@
 
             input {
                 @extend .text_input;
-                width: 90%;
+                width: 100%;
                 margin: 10px 0px;
                 height: 36px;
                 border-radius: 4px;
+                padding-right: 20px;
             }
 
             .button {
@@ -100,22 +116,10 @@
                 font-weight: 600;
             }
 
-            .signup_bottom_content {
-                width: 100%;
-                padding: 0px 20px 0px 20px;
-                height: 30px;
-                font-size: 13px;
-                display: flex;
-                align-items: center;
-                justify-content: flex-end;
-                // .MuiSvgIcon-root{
-                //     fill: $secondaryColor;
-                // }
-
                 .forgot {
                     display: block;
                     float: right;
-                    padding-left: 20px;
+                    padding-left: 60px;
                     cursor: pointer;
                     text-align: right;
                     color: $secondaryColor;
@@ -127,16 +131,13 @@
                     text-decoration: underline;
                 }
 
-                // .remember {
-                //     margin-left: -2px;
-
-                // }
-            }
+               
 
             .signup_now {
-                font-size: 13px;
+                font-size: 14px;
 
                 span {
+                    font-size: 14px;
                     font-weight: 500;
                     cursor: pointer;
                     padding-left: 10px;
@@ -152,70 +153,113 @@
 
         }
     }
-    .signup_container{
+
+
+    .signup_outer_container{
         width: 66%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+
         @include media-mobile {
-            width: 80%;
+            width: 100%;
+            //height: 100%;
         }
 
         @include media-tab {
-            width: 80%;
+            width: 100%;
+           // height: 100%;
         }
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
+        
         padding: 30px 20px 50px 20px;
-        background-color: #ffffff;
+       // background-color: rgba(32, 166, 243, 0.065);
         border-radius: 4px;
         box-shadow: 1px 1px 10px 2px rgba(4, 53, 99,0.8);
-        .logo-container{
+        .signup_container{
             width: 100%;
-            padding-left: 20px;
-            padding-bottom: 20px;
-            color: $secondaryColor;
-            font-style: oblique;
+            height: 100%;
             display: flex;
-            justify-content: flex-start;
+            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            .logo{
-                object-fit: contain;
-                width: 48px;
-                height: 40px;
-            }
-        }
-        .button {
-            @extend .button;
-            margin: 24px 0px;
-            width: 110px;
-            background: linear-gradient($primaryColor, $secondaryColor);
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-        .inner_container{
-            display: flex;
-            align-items: center;
-            padding: 15px 0px;
-            .label{
-                width: 160px;
-                text-align: right;
-                font-size: 16px;
-            }
-            input {
-                @extend .text_input;
-                width: 200px;
-                margin: 10px 20px;
-                height: 36px;
-                border-radius: 4px;
-            }
-            .dropdown{
-                width: 200px;
-                height: 18px;
-                margin: 0px 20px 20px 20px;
 
+            .logo-container{
+                width: 100%;
+                padding-left: 20px;
+                padding-bottom: 20px;
+                color: $secondaryColor;
+                font-style: oblique;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                .logo{
+                    object-fit: contain;
+                    width: 48px;
+                    height: 40px;
+                }
             }
+            .button {
+                @extend .button;
+                margin: 24px 20px;
+                width: 110px;
+                background: linear-gradient($primaryColor, $secondaryColor);
+                text-transform: uppercase;
+                font-weight: 600;
+            }
+            .inner_container{
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
+                padding: 15px 10px;
+                .label{
+                    width: 160px;
+                    text-align: right;
+                    font-size: 16px;
+                    @include media-mobile {
+                        text-align: left;
+                    }
             
-           
+                    @include media-tab {
+                        text-align: left;
+                    }
+                }
+                input {
+                    @extend .text_input;
+                    width: 200px;
+                    @include media-mobile {
+                        width: 80%;
+                    }
+            
+                    @include media-tab {
+                        width: 66%;
+                    }
+                    margin: 10px 20px;
+                    height: 36px;
+                    border-radius: 4px;
+                }
+                .dropdown{
+                    width: 200px;
+                    @include media-mobile {
+                        width: 80%;
+                    }
+            
+                    @include media-tab {
+                        width: 66%;
+                    }
+                    height: 18px;
+                    margin: 12px 20px 20px 12px;
+
+                }
+                
+                
+            }
         }
-    }
+}
+}
+.ant-form-item-children{
+    display: flex;
+    align-items: center;
 }

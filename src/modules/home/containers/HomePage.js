@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SignIn from '../components/SignIn';
 import SignUp from '../components/SignUp';
-import { userLogin } from '../../../store/actions/authentication';
+import { userLogin, registerUser } from '../../../store/actions/authentication';
 import '../styles/index.scss';
-import { HomeBGIcon } from '../../../constants/Icons';
 
 let lang;
 
@@ -12,6 +11,7 @@ class HomePage extends Component {
     constructor(props) {
         super(props);
         this.state = { selectedLanguageIndex: this.props.languageIndex || 0 };
+
     }
 
     componentDidMount() {
@@ -30,7 +30,8 @@ class HomePage extends Component {
         if (nextProps.language && this.props.language !== nextProps.language) {
             lang = nextProps.language.login;
         }
-        if (this.props.isSignedIn !== nextProps.isSignedIn) {
+        if (this.props.registeredUser !== nextProps.registeredUser) {
+            console.log('Registred : ', nextProps.registeredUser);
         }
     }
 
@@ -39,17 +40,41 @@ class HomePage extends Component {
         this.props.userLogin(user);
     }
 
-    onSignUpClick = (user) => {
-        this.setState({ showSignUp: true });
+    onRegisterClick = (user) => {
+
+        let testuser = {
+            customers: [],
+            dealers: [],
+            products: [],
+            username: "jayam-electricals",
+            hash: "sdffsrdfgdf",
+            firstName: "jayam",
+            lastName: "electricals",
+            mobileNumber: "9500167390",
+            whatsappNumber: "9500818390",
+            emailId: "jayamelectricals1@gmail.com",
+            businessName: "Jayam Electricals",
+            businessType: "Electricals",
+            businessNature: "Retailer",
+            businessAddres: "A.R.S complex, Kumbakonam Road, Panikkankuppam, Panruti, Cuddalore Dt ...",
+            gstin: "GSTINQDDsdfdsf823ENSDF",
+            profilePicture: "",
+            createdDate: "2020 - 06 - 13T10: 34: 49.240+00: 00"
+
+        };
+
+        this.props.registerUser(testuser);
     }
 
     render() {
         return (<div className="home_page" >
-            <img src={HomeBGIcon} className="bg_image" />
+            {/* <img src={HomeBGIcon} className="bg_image" /> */}
             <div className="home_content">
                 {
                     this.state.showSignUp ? <SignUp /> :
-                        <SignIn onSignupClick={this.onSignUpClick} />
+                        <SignIn
+                            onLoginClick={this.onLoginClick}
+                            onSignupClick={this.onRegisterClick} />
                 }
             </div>
         </div>)
@@ -57,8 +82,9 @@ class HomePage extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-
+        //loginStatus: state.authReducer.loginStatus
+        registeredUser: state.authReducer && state.authReducer.registeredUser
     }
 }
 
-export default connect(mapStateToProps, { userLogin })(HomePage);
+export default connect(mapStateToProps, { userLogin, registerUser })(HomePage);

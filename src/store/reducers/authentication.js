@@ -1,4 +1,5 @@
-import { LOGIN } from "../types";
+import { LOGIN, REGISTER } from "../types";
+import { REFUSED } from "dns";
 const initialState = {
     loggedIn: false
 }
@@ -9,6 +10,12 @@ export default function authentication(state = initialState, action) {
             return {
                 ...state,
                 loggedIn: action.payload
+            };
+
+        case REGISTER:
+            return {
+                ...state,
+                registeredUser: action.payload
             };
 
         default:
