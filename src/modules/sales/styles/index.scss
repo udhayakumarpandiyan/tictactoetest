@@ -12,14 +12,28 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        .column{
+            width: 100%;
+        }
+        .ant-tabs-nav-container{
+            display: flex;
+        }
     }
     .content_container {
-        margin-top: 50px;
-        width: 30%;
+        //margin-top: 50px;
+        width: 50%;
+        @include media-mobile{
+            width: 90%;
+        }
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
+        button{
+            background-color: $buttonColor;
+            color: #ffffff;
+            width: 120px;
+        }
         .input{
             
             height: 40px;
@@ -27,6 +41,10 @@
             border: 1px solid #aeaeae;
             padding: 2px 10px;
             border-radius: 4px;
+        }
+        .dropdown{
+            height: 40px;
+            width: 160px;
         }
         .quantity-container{
             display: flex;
@@ -43,14 +61,54 @@
         
         }
         .bill-container{
+            width: 100%;
             display: flex;
             flex-direction: column;
-            .bill-top-container{
-                padding: 10px;
+            
+            .button-container{
+                width: 100%;
+                height: 60px;
                 display: flex;
-                justify-content: space-between;
-                border: 1px solid #e8e8e8;
-                border-bottom: none;
+                justify-content: flex-start;
+                align-items: center;
+            }
+            .bill{
+                background-color: rgba($color: $buttonColor, $alpha: 0.065);
+                border: 1px solid rgba($color: $primaryColor, $alpha: 0.4);
+                border-radius: 0px;
+
+                .bill-top-container{
+                    padding: 10px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    border: 1px solid #e8e8e8;
+                    border-bottom: none;
+                    .name-address-container{
+                        width: 100%;
+                        label{
+                            display: inline-block;
+                            width: 100%;
+                            text-align: center;
+                            color: $primaryColor;
+                        }
+                        .name{
+                            font-size: 32px;
+                            font-weight: 600;
+                        }
+                    }
+                    .bill-date-container{
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-between;
+                    }
+                }
+            }
+            .ant-table-thead > tr > th{
+                background-color: rgba($color: $primaryColor, $alpha: 0.8);
+                color: #ffffff;
+
             }
             .total-container{
                 padding: 0px 10px;
@@ -66,6 +124,26 @@
                 .amount{
                     font-weight: bold;
                     text-align: center;
+                }
+            }
+            .bottom-container{
+                input{
+                    border-top: none;
+                    border-radius: 0px;
+                    text-align: right;
+                
+                }
+            }
+            .submit-container{
+                padding: 20px 0px;
+                display: flex;
+                justify-content: center;
+                button{
+                    font-weight: bold;
+                    @include media-mobile{
+                         width: 100%;
+                    }
+                    height: 40px;
                 }
             }
     }

@@ -37,7 +37,7 @@ class HomePage extends Component {
 
 
     userLogin = (user) => {
-        this.props.userLogin(user);
+        //this.props.userLogin(user);
     }
 
     registerUser = (userData) => {

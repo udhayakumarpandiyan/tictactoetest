@@ -23,10 +23,10 @@ class Sales extends Component {
     }
     render() {
         return (<div className="module_container">
-            <label className="page-title">{`Today's Sales`}</label>
+            <label className="page-title">{`Sales`}</label>
             <hr className="horizontal-line"></hr>
             <Row className="content">
-                <Col>
+                <Col className="column">
                     <Tabs tabPosition={this.state.tabPosition}>
                         <TabPane tab="Today's Sales" key="1">
                             <TodaySales onQuantityChange={this.onQuantityChange} />

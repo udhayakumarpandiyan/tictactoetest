@@ -146,7 +146,7 @@ class Shell extends Component {
     render() {
         return (<div className="shell">
 
-            {this.state.isSignedIn ? <div>
+            {!this.state.isSignedIn ? <div>
                 <AppHeader menuItems={this.state.menuItems}
                     isSignedIn={this.props.isSignedIn}
                     selectedLanguageIndex={this.state.selectedLanguageIndex}
@@ -239,9 +239,9 @@ class Shell extends Component {
 
 
 
-                    <div className="logo_container">
+                    {/* <div className="logo_container">
                         <img src={LogoIcon} />
-                    </div>
+                    </div> */}
                 </div >
             </div>
                 :
