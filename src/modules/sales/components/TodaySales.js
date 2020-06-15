@@ -10,7 +10,6 @@ const columns = [
         title: 'Qty',
         dataIndex: 'quantity',
         key: 'quantity',
-        span: 60,
     },
     {
         title: 'Product details',
@@ -38,13 +37,37 @@ const productCategory = [{ name: "Electricals", id: "EC" },
 { name: "Manufacturing", id: "MF" },
 { name: "Tools", id: "TL" }];
 
+const name = "Jayam electricals";
+const address1 = "# 5, A.R.S complex, Kumbakonam road, Panikkankuppam";
+const address2 = "Panruti - 607106";
+
+const total = products.reduce(
+    (accumulator, currentValue) => accumulator + currentValue.price * currentValue.quantity
+    , 0
+)
+
+
 
 const TodaySales = (props) => {
     const [showBill, changeShowBill] = useState(false);
+    const [amount, changeAmount] = useState(total);
+    const [balance, changeBalance] = useState(0);
 
     const onGenerateBill = () => {
         changeShowBill(true);
     }
+
+    const onRoundOffChange = (event) => {
+        let amount = total - event.target.value;
+        changeAmount(amount);
+    }
+
+    const onAmountChange = (event) => {
+        let balance = amount - event.target.value;
+        changeBalance(balance);
+    }
+
+
     return (
         <div className="content_container">
             {!showBill ? <div>
@@ -107,31 +130,31 @@ const TodaySales = (props) => {
                     <div className="bill">
                         <div className="bill-top-container">
                             <div className="name-address-container">
-                                <label className="name">Jayam Electricals</label>
-                                <label className="address-line1"># 5,A.R.S Complex, Kumbakonam road,Pannikankuppam,</label>
-                                <label className="address-line2"> Panruti -607106</label>
+                                <label className="name">{name}</label>
+                                <label className="address-line1">{address1},</label>
+                                <label className="address-line2">{address2}</label>
 
                             </div>
                             <div className="bill-date-container">
-                                <label>Bill no : </label>
-                                <label>Date : 27/05/1988 </label>
+                                <label>Bill no : {props.billno} </label>
+                                <label>Date : {props.date}</label>
                             </div>
                         </div>
                         <Table dataSource={products}
-                        size={10}
+                            size={10}
                             pagination={false}
                             columns={columns}
                             bordered
                         />
                         <div className="total-container">
                             <label className="label">Total</label>
-                            <label className="amount">{`Rs. ${250}.${50}`}</label>
+                            <label className="amount">{`Rs. ${total}`}</label>
                         </div>
                         <div className="bottom-container">
-                            <Input placeholder="Round-off amount" />
-                            <Input placeholder="Amount" disabled={true} />
-                            <Input placeholder="Amount Paid" />
-                            <Input placeholder="Balance to be paid: Rs" disabled={true} />
+                            <Input placeholder="Round-off amount" onChange={onRoundOffChange} />
+                            <Input placeholder="Amount" disabled={true} value={amount}/>
+                            <Input placeholder="Amount Paid" onChange={onAmountChange} />
+                            <Input placeholder="Balance to be paid: Rs" disabled={true}   value={balance}/>
 
                         </div>
                     </div>
