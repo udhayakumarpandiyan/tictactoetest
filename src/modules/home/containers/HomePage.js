@@ -51,16 +51,19 @@ class HomePage extends Component {
 
     render() {
         return (<div className="home_page" >
-            {/* <img src={HomeBGIcon} className="bg_image" /> */}
-            <div className="home_content">
-                {
-                    this.state.showSignUp ? <SignUp onBackButtonClick={this.goBack}
-                        registerUser={this.registerUser} /> :
-                        <SignIn
-                            userLogin={this.userLogin}
-                            onSignupClick={this.goBack} />
-                }
+
+            {this.state.showSignUp ? <div className="signup_content">
+
+                <SignUp onBackButtonClick={this.goBack}
+                    registerUser={this.registerUser} />
             </div>
+                : <div className="signin_content">
+                    <SignIn
+                        userLogin={this.userLogin}
+                        onSignupClick={this.goBack} />
+
+                </div>
+            }
         </div>)
     }
 }

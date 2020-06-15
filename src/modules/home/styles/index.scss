@@ -4,15 +4,21 @@
 .home_page {
     display: flex;
     width: 100%;
-    //height: 100%;
+    height: 100%;
     position: relative;
     top: 0px;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    //background-color: rgba(32, 166, 243, 0.065);
     
-    .home_content {
+    .signin_content {
+        display: flex;
+        width: 100%;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+    }
+    .signup_content {
         display: flex;
         width: 100%;
         align-items: center;
@@ -21,19 +27,18 @@
 
     .outer-container{
         width: 24%;
-
         @include media-mobile {
-            width: 100%;
+            width: 86%;
         }
 
         @include media-tab {
-            width: 100%;
+            width: 86%;
         }
 
         @include media-desktop-sm {
             width: 100%;
         }
-        margin : 150px 0px;
+        margin : 10% 0px 20% 0px;
         padding: 30px 20px 20px 20px;
         background-color: #ffffff;
         border-radius: 4px;
@@ -92,22 +97,22 @@
                 justify-content: flex-start;
                 align-items: center;
                 @include media-mobile{
-                   font-size: 36px;
+                   font-size: 26px;
                 }
                 @include media-tab{
-                    font-size: 36px;
+                    font-size: 26px;
                  }
                 .logo{
                     object-fit: contain;
                     width: 48px;
                     height: 40px;
                     @include media-mobile{
-                        width: 96px;
-                        height: 80px;
+                        width: 72px;
+                        height: 60px;
                     }
                     @include media-tab{
-                        width: 96px;
-                        height: 80px;
+                        width: 72px;
+                        height: 60px;
                     }
                 }
             }
@@ -196,6 +201,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        margin: 50px 20px;
+        background-color: #ffffff;
         
 
         @include media-mobile {
@@ -209,7 +216,6 @@
         }
         
         padding: 30px 20px 50px 20px;
-       // background-color: rgba(32, 166, 243, 0.065);
         border-radius: 4px;
         box-shadow: 1px 1px 10px 2px rgba(4, 53, 99,0.8);
         .signup_container{
