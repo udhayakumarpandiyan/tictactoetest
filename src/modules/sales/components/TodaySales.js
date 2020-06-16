@@ -70,8 +70,8 @@ const TodaySales = (props) => {
 
     return (
         <div className="content_container">
-            {!showBill ? <div>
-                <div className="inner_container">
+            {!showBill ? <div className="sales">
+                <div className="inner-container">
                     <label>Bill Number </label>
                     <InputNumber min={0} max={100000} defaultValue={1}
                         placeHolder="Quantity" onChange={props.onQuantityChange} />
@@ -79,27 +79,29 @@ const TodaySales = (props) => {
                 </div>
 
 
+                <div className="inner-container">
+                    <label>Product</label>
+                    <Select placeholder="Category" className="dropdown">
+                        {productCategory.map((category, index) => (
+                            <Option key={category.id} value={category.name}>{category.name}</Option>
+                        ))
+                        }
+                    </Select>
 
-                <Select placeholder="Product Category" className="dropdown" mode="combobox">
-                    {productCategory.map((category, index) => (
-                        <Option key={category.id} value={category.name}>{category.name}</Option>
-                    ))
-                    }
-                </Select>
+                    <Select placeholder="Code" className="dropdown last" mode="combobox">
+                        <Option key="MMroduct">MMroduct</Option>
+                        <Option key="Product">Product</Option>
+                    </Select>
+                </div>
 
-                <Select placeholder="Product code" className="dropdown" mode="combobox">
-                    <Option key="MMroduct">MMroduct</Option>
-                    <Option key="Product">Product</Option>
-                </Select>
-
-                <div className="quantity-container">
+                <div className="inner-container">
                     <label>Price </label>
                     <InputNumber min={0} max={100000} defaultValue={1}
                         placeHolder="Quantity" onChange={props.onQuantityChange} />
                 </div>
 
 
-                <div className="quantity-container">
+                <div className="inner-container">
                     <label>Quantity </label>
                     <InputNumber min={1} max={1000} defaultValue={1}
                         placeHolder="Quantity" onChange={props.onQuantityChange} />
@@ -113,13 +115,15 @@ const TodaySales = (props) => {
                     </Select>
                 </div>
 
-                <div className="quantity-container">
+                <div className="inner-container bottom">
+                    <label></label>
                     <label>{`Rs.${100}.${50}`} </label>
-
-
                     <Button> Next Product </Button>
                 </div>
-                <Button onClick={onGenerateBill}>Generate Bill</Button>
+                <div className="submit-container">
+                    <Button onClick={onGenerateBill}>GENERATE BILL</Button>
+                </div>
+
             </div>
                 :
 
@@ -152,9 +156,9 @@ const TodaySales = (props) => {
                         </div>
                         <div className="bottom-container">
                             <Input placeholder="Round-off amount" onChange={onRoundOffChange} />
-                            <Input placeholder="Amount" disabled={true} value={amount}/>
+                            <Input placeholder="Amount" disabled={true} value={amount} />
                             <Input placeholder="Amount Paid" onChange={onAmountChange} />
-                            <Input placeholder="Balance to be paid: Rs" disabled={true}   value={balance}/>
+                            <Input placeholder="Balance to be paid: Rs" disabled={true} value={balance} />
 
                         </div>
                     </div>
