@@ -52,8 +52,9 @@
             height: 32px;
             @include media-mobile{
                 height: 40px;
+                width: 35%;
             }
-            min-width: 120px;
+            width: 40%;
             margin-right: 20px;
         }
         .last{
@@ -72,24 +73,36 @@
                 height: 32px;
                 @include media-mobile{
                     height: 40px;
+                    width: 36%;
                 }
-                width: 130px;
+                width: 40%;
+                @include media-mobile{
+                    width: 36%;
+                }
 
             }
+            .ant-select{
+                width: 40%;
+                @include media-mobile{
+                    width: 36%;
+                }
+            }
             .ant-select-selection--single{
-               width: 130px;
+               width: 100%;
                height: 32px;
                @include media-mobile{
                     height: 40px;
+                    width: 100%;
                 }
                border: 1px solid $borderColor;
             
              }
              .ant-input-number{
-                 min-width: 130px;
+                 width: 40%;
                  height: 32px;
                  @include media-mobile{
                     height: 40px;
+                    width: 36%;
                 }
                  margin-right: 20px;
                  border: 1px solid $borderColor;
@@ -217,7 +230,7 @@
                 }
             }
             .submit-container{
-                padding: 20px 0px;
+                padding: 40px 0px;
                 display: flex;
                 justify-content: center;
                 button{
