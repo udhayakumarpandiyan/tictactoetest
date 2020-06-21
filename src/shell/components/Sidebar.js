@@ -91,28 +91,28 @@ const Sidebar = (props) => {
                             <Menu.Item key="sales">
                                 <Icon type="snippets" />
                                 <span>
-                                    Sales Entry
+                                    Billing
                                     </span>
                             </Menu.Item>
 
                             <Menu.Item key="investments">
-                                <Icon type="idcard" />
+                                <Icon type="wallet" />
                                 <span>
-                                    Investments
+                                    Purchases
                                     </span>
                             </Menu.Item>
 
                             <Menu.Item key="dealers">
                                 <Icon type="user" className="menu_icon" />
                                 <span>
-                                    Dealers/Suppliers
+                                    Partners
                                     </span>
                             </Menu.Item>
 
                             <Menu.Item key="stock_details">
-                                <Icon type="idcard" />
+                                <Icon type="stock" />
                                 <span>
-                                    Stock details
+                                    Inventory
                                     </span>
                             </Menu.Item>
 

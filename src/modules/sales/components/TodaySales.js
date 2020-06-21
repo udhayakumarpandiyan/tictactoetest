@@ -66,6 +66,9 @@ const TodaySales = (props) => {
         let balance = amount - event.target.value;
         changeBalance(balance);
     }
+    const goBackToSalesEntry =() =>{
+        changeShowBill(false);
+    }
 
 
     return (
@@ -75,7 +78,7 @@ const TodaySales = (props) => {
                     <label>Bill Number </label>
                     <InputNumber min={0} max={100000} defaultValue={1}
                         placeHolder="Quantity" onChange={props.onQuantityChange} />
-                    <input className="input" type="date" />
+                    <input className="input" type="date" value="2013-01-08" />
                 </div>
 
 
@@ -117,9 +120,9 @@ const TodaySales = (props) => {
 
                 <div className="inner-container bottom">
                     <label></label>
-                    <label>{`Rs.${100}.${50}`} </label>
                     <Button> Next Product </Button>
                 </div>
+
                 <div className="submit-container">
                     <Button onClick={onGenerateBill}>GENERATE BILL</Button>
                 </div>
@@ -129,7 +132,7 @@ const TodaySales = (props) => {
 
                 <div className="bill-container" style={{ display: 'flex', flexDirection: 'column' }}>
                     <div className="button-container">
-                        <Button onClick={onGenerateBill}>{`<< Sales entry`}</Button>
+                        <Button onClick={goBackToSalesEntry}>{`<< Sales entry`}</Button>
                     </div>
                     <div className="bill">
                         <div className="bill-top-container">

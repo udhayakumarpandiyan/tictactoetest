@@ -159,6 +159,7 @@
             }
 
             width: 16%;
+            min-height: calc(100vh);
             padding-top: 20px;
             display: flex;
             flex-direction: column;
@@ -286,7 +287,7 @@
         }
 
         .content {
-            width: 84%;
+            width: 100%;
 
             @include media-tab {
                 width: 100%;
@@ -411,4 +412,16 @@
 .ant-drawer-close:hover {
     color: #ffffff;
     font-size: 24px;
+}
+.ant-table-thead > tr > th{
+    height: 40px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+    color: #ffffff;
+    background-color: #1890ff;
+}
+.ant-table-tbody > tr > td{
+    text-align: center;
+    padding: 8px;
 }

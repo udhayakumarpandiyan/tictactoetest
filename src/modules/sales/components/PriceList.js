@@ -1,8 +1,9 @@
 
 import React, { useState } from 'react';
-import { Row, Col, Table, Select } from 'antd';
+import { Row, Col, Table, Select, Input } from 'antd';
 
 const Option = Select.Option;
+const { Search } = Input;
 const categories = [{ name: "Electrical", code: "EL" },
 { name: "Plumbing", code: "PL" },
 { name: "Carpentaring", code: "CP" },
@@ -50,6 +51,12 @@ const columns = [
         dataIndex: 'price',
         key: 'price',
         ellipsis: true,
+    },
+    {
+        title: 'Price',
+        dataIndex: 'price',
+        key: 'price',
+        ellipsis: true,
         render: (text, row) => <span>{`${text} / ${row.unit}`}</span>,
 
 
@@ -87,22 +94,32 @@ const PriceList = (props) => {
 
     return (
         <div className="pricelist-container">
-            <label>Category</label>
-            <Select placeholder="Select Catergory"
-                defaultValue={defaultCategory}
-                className="dropdown"
-                onChange={onCategorySelect}>
-                {categories.map((category, index) => (
-                    <Option key={"option" + index} value={category.name}>{category.name}</Option>
-                ))}
-            </Select>
-            <label>Brand</label>
-            <Select placeholder="Select Brand" defaultValue={defaultBrand}
-                className="dropdown" onChange={(event) => onBrandSelect(event)}>
-                {brands.map((brand, index) => (
-                    <Option key={index} value={brand.name}>{brand.name}</Option>
-                ))}
-            </Select>
+            <div className="top-container">
+            <label>Filter by </label>
+                <div className="left-container"> 
+                    <Select placeholder="Select Catergory"
+                        defaultValue={defaultCategory}
+                        className="dropdown"
+                        onChange={onCategorySelect}>
+                        {categories.map((category, index) => (
+                            <Option key={"option" + index} value={category.name}>{category.name}</Option>
+                        ))}
+                    </Select>
+
+                    <Select placeholder="Select Brand" defaultValue={defaultBrand}
+                        className="dropdown" onChange={(event) => onBrandSelect(event)}>
+                        {brands.map((brand, index) => (
+                            <Option key={index} value={brand.name}>{brand.name}</Option>
+                        ))}
+                    </Select>
+                </div>
+                <div className="right-container">
+                    <Search placeholder="Search"
+                        className="search"
+                        onSearch={value => console.log(value)}
+                        enterButton />
+                </div>
+            </div>
 
             <Table dataSource={products}
                 pagination={{ pageSize: 40 }}

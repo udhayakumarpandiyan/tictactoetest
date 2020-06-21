@@ -140,6 +140,11 @@
                 height: 40px;
             }
         }
+        .payback-label{
+            margin: 10px 0px;
+            font-weight: 16px;
+            font-weight: bold;
+        }
         .bottom{
             padding-top: 20px;
             justify-content: flex-end;
@@ -190,6 +195,7 @@
                 }
             }
             .ant-table-thead > tr > th{
+                text-align: center;
                 background-color: rgba($color: $buttonColor, $alpha: 1);
                 color: #ffffff;
 

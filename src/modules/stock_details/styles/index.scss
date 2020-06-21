@@ -44,14 +44,85 @@
         }
     }
     .pricelist-container{
-        
-        .ant-select {
-            min-width: 150px !important;
-            margin: 10px 20px 30px 20px;
-            height: 26px;
-            border: none;
-            outline: none;
+        .top-container{
+            width: 100%;
+            padding: 20px 0px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            //flex-wrap: wrap;
+            label{
+                display: inline-block;
+                width: 50px;
+            }
+            @include media-mobile{
+                padding: 10px 0px 20px 0px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .left-container{
+                width: 50%;
+                @include media-mobile{
+                    width: 100%;
+                    margin-left: 0px;
+                    justify-content: space-between;
+                    padding-top: 10px;
+                }
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                //flex-wrap: wrap;
+                .ant-select {
+                    width: 160px;
+                    margin: 10px 20px 10px 20px;
+                    height: 32px;
+                    border: none;
+                    outline: none;
+                    @include media-mobile{
+                        width: 45%;
+                        margin: 0px;
+                    }
+                    @include media-tab{
+                        width: 140px;
+                    }
+                }
+            }
+            .right-container{
+                width: 50%;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                flex-wrap: wrap;
+                @include media-mobile{
+                    width: 100%;
+
+                }
+                .search{
+                    width: 50%;
+                    padding: 10px 0px;
+                    margin-right: 20px;
+                    @include media-mobile{
+                        width: 100%;
+                        margin: 10px 0px;
+
+                    }
+                }
+                .button{
+                    height: 32px;
+                    padding: 0px 40px;
+                    @include media-mobile{
+                        width: 100%;
+                    }
+                    font-weight: 600;
+                    text-transform: uppercase;
+
+                }
+
+            }
+
         }
+        
+
     }
   
 }
