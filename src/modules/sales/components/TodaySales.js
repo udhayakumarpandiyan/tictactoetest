@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Row, Col, Select, InputNumber, Button, Table, Input } from 'antd';
+import { Select, InputNumber, Button, Table, Input } from 'antd';
+import { getCurrentDate } from '../../../utils/index';
 
 const Option = Select.Option;
 const products = [{ name: "Gol", code: "23", price: 100, quantity: 2 },
@@ -53,6 +54,17 @@ const TodaySales = (props) => {
     const [amount, changeAmount] = useState(total);
     const [balance, changeBalance] = useState(0);
 
+
+    let date = new Date();
+    let month = date.getMonth();
+    month = month + 1;
+    month = month < 9 ? '0' + month : month;
+    let localDate = date.getDate();
+    localDate = localDate < 10 ? '0' + localDate : localDate;
+    let currentDate = date.getFullYear() + '-' + month + '-' + localDate;
+
+
+
     const onGenerateBill = () => {
         changeShowBill(true);
     }
@@ -66,7 +78,7 @@ const TodaySales = (props) => {
         let balance = amount - event.target.value;
         changeBalance(balance);
     }
-    const goBackToSalesEntry =() =>{
+    const goBackToSalesEntry = () => {
         changeShowBill(false);
     }
 
@@ -78,7 +90,7 @@ const TodaySales = (props) => {
                     <label>Bill Number </label>
                     <InputNumber min={0} max={100000} defaultValue={1}
                         placeHolder="Quantity" onChange={props.onQuantityChange} />
-                    <input className="input" type="date" value="2013-01-08" />
+                    <input className="input" type="date" value={getCurrentDate()} />
                 </div>
 
 

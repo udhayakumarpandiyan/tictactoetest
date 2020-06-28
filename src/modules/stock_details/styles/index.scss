@@ -165,3 +165,20 @@
 //     height: 40px;
 //     margin: 0px 20px;
 // }
+.modal-content{
+    //width: 86%;
+    margin: 10px 30px;
+    @include media-mobile{
+        margin: 10px;
+    }
+    .content-row{
+        display: flex;
+        padding: 16px 0px;
+        .ant-select-selection, .ant-select-selection--single{
+            width: 200px;
+        }
+        input{
+
+        }
+    }
+}

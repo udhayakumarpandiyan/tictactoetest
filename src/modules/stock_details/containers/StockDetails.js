@@ -28,7 +28,6 @@ class StockDetails extends Component {
             <Row className="content">
                 <Col>
                     <StockList getPriceList={this.getPriceList} />
-
                 </Col>
             </Row>
         </div>

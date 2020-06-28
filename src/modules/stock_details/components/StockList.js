@@ -1,11 +1,16 @@
 
 import React, { useState } from 'react';
-import { Row, Col, Table, DatePicker, Input, Select, Button, InputNumber } from 'antd';
+import { Form, Table, DatePicker, Input, Select, Button, InputNumber } from 'antd';
 import { useTheme } from '@material-ui/core';
+import moment from 'moment';
 import Modal from '../../../common/modal';
+import { getCurrentDate } from '../../../utils';
+import AddNew from './AddNew';
 
 const Option = Select.Option;
 const { Search } = Input;
+
+const dateFormatList = ['DD/MM/YYYY', 'DD/MM/YY'];
 
 const categories = [{ name: "Electrical", code: "EL" },
 { name: "Plumbing", code: "PL" },
@@ -271,8 +276,8 @@ const StockList = (props) => {
     return (
         <div className="pricelist-container">
             <div className="top-container">
-            <label>Filter by </label>
-                <div className="left-container"> 
+                <label>Filter by </label>
+                <div className="left-container">
                     <Select placeholder="Select Catergory"
                         defaultValue={defaultCategory}
                         className="dropdown"
@@ -308,24 +313,8 @@ const StockList = (props) => {
 
 
             <Modal isOpen={showPopup} onClose={onPopupClose}
-                className="modal" >
-                <div style={{ width: '100%' }}>
-
-                    <DatePicker />
-                    <Input placeholder="Product Name" className="input" />
-                    <Input placeholder="Brand" />
-                    <Input placeholder="Product Code" />
-                    <Select placeholder="Dealer" mode="combobox">
-                        <Option key={'sad'} value="Dealer">Dealer</Option>
-                    </Select>
-                    <InputNumber placeholder="Quantity" min={1} max={1000} />
-                    <Select placeholder="units" mode="combobox">
-                        <Option key={'ad'} value="Pieces">Pieces</Option>
-                    </Select>
-                    <Input placeholder="Price" />
-
-                    <Input />
-                </div>
+                className="modal" title={"Add New Item"} >
+                <AddNew />
             </Modal>
         </div>
     )

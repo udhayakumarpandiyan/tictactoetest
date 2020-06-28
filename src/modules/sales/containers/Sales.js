@@ -28,7 +28,7 @@ class Sales extends Component {
             <Row className="content">
                 <Col className="column">
                     <Tabs tabPosition={this.state.tabPosition}>
-                        <TabPane tab="Sales" key="1">
+                        <TabPane tab="Billing" key="1">
                             <TodaySales onQuantityChange={this.onQuantityChange} />
                         </TabPane>
 

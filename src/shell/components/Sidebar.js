@@ -105,7 +105,7 @@ const Sidebar = (props) => {
                             <Menu.Item key="dealers">
                                 <Icon type="user" className="menu_icon" />
                                 <span>
-                                    Partners
+                                    Dealers
                                     </span>
                             </Menu.Item>
 

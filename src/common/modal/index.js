@@ -6,7 +6,7 @@ const ModalContainer = (props) => {
 
     return (<div className="modal_container">
         <div className="modal_header">
-            <label className="modal_title">Title</label>
+            <label className="modal_title">{props.title}</label>
             <button className="modal_close" onClick={props.onClose}>X</button>
         </div>
         <div className="modal_content">
@@ -47,6 +47,7 @@ class Modal extends React.Component {
         if (this.props.isOpen) {
             return ReactDOM.createPortal(
                 <ModalContainer parent={this.el}
+                    title={this.props.title}
                     children={this.props.children}
                     onClose={this.onCloseButtonClick}
                     onCancelClick={this.onCloseButtonClick} />
