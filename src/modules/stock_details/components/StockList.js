@@ -314,7 +314,7 @@ const StockList = (props) => {
 
             <Modal isOpen={showPopup} onClose={onPopupClose}
                 className="modal" title={"Add New Item"} >
-                <AddNew />
+                <AddNew addNewItem={props.addNewItem} />
             </Modal>
         </div>
     )

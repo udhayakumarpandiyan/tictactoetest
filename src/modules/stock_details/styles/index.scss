@@ -12,6 +12,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+
     }
     .outer_container {
         margin-top: 50px;
@@ -171,14 +172,23 @@
     @include media-mobile{
         margin: 10px;
     }
-    .content-row{
+    .modal-bottom-content{
         display: flex;
-        padding: 16px 0px;
-        .ant-select-selection, .ant-select-selection--single{
-            width: 200px;
-        }
-        input{
+        justify-content: center;
+    }
 
-        }
+}
+.newitem-form{
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .ant-row , .ant-form-item{
+        width: 45%;
+    }
+    .ant-form-item-control{
+        width: 100%;
+    }
+    .ant-input-number{
+        width: 100%;
     }
 }

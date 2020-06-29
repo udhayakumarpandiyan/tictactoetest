@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 import '../styles/index.scss';
-import { Row, Col, Select, InputNumber, Button, Tabs } from 'antd';
-import TodaySales from '../components/TodaySales';
-import Return from '../components/Return';
+import { Row, Col } from 'antd';
 import StockList from '../components/StockList';
-
-const Option = Select.Option;
-const { TabPane } = Tabs;
-
-
 
 class StockDetails extends Component {
     constructor(props) {
@@ -21,13 +14,20 @@ class StockDetails extends Component {
     getPriceList = () => {
 
     }
+
+    addNewItem = (item) => {
+        this.props.addNewItem(item);
+    }
+
+
     render() {
         return (<div className="module_container">
             <label className="page-title">{`Stock Details`}</label>
             <hr className="horizontal-line"></hr>
             <Row className="content">
                 <Col>
-                    <StockList getPriceList={this.getPriceList} />
+                    <StockList getPriceList={this.getPriceList}
+                        addNewItem={this.addNewItem} />
                 </Col>
             </Row>
         </div>

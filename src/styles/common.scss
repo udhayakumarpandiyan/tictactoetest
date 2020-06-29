@@ -16,9 +16,9 @@
     .modal_container {
         display: "flex";
         flex-direction: column;
-        width: 50%;
+        width: 40%;
         @include media-mobile{
-            width: 86%;
+            width: 90%;
         }
         min-height: 200px;
         border-radius: 10px;
