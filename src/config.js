@@ -20,9 +20,10 @@ export const API = {
     authenticate: `${AUTH}authenticate`,
     
   },
-  product:{
+  products:{
     add:`${PRODUCT}add`,
-    remove:`${PRODUCT}remove`
+    remove:`${PRODUCT}remove`,
+    getItems:`${PRODUCT}`
   }
   
 };

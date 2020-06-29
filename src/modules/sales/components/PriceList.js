@@ -48,14 +48,14 @@ const columns = [
     },
     {
         title: 'Price',
-        dataIndex: 'price',
-        key: 'price',
+        dataIndex: 'original_price',
+        key: 'original_price',
         ellipsis: true,
     },
     {
         title: 'Price',
-        dataIndex: 'price',
-        key: 'price',
+        dataIndex: 'selling_price',
+        key: 'selling_price',
         ellipsis: true,
         render: (text, row) => <span>{`${text} / ${row.unit}`}</span>,
 
@@ -121,7 +121,7 @@ const PriceList = (props) => {
                 </div>
             </div>
 
-            <Table dataSource={products}
+            <Table dataSource={props.items}
                 pagination={{ pageSize: 40 }}
                 columns={columns}
                 bordered

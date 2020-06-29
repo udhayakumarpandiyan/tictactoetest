@@ -1,12 +1,17 @@
-import { ADD_ITEM , REMOVE_ITEM} from "../types";
+import { ADD_ITEM , REMOVE_ITEM, GET_ITEMS} from "../types";
 const initialState = {
     added: false,
     removed: false,
-    items: [],
+    items: undefined,
 }
 
 export default function product(state = initialState, action) {
     switch (action.type) {
+        case GET_ITEMS:
+            return{
+                ...state,
+                items: action.payload
+            }
         case ADD_ITEM:
             return {
                 ...state,

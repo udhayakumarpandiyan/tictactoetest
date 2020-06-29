@@ -5,6 +5,9 @@ import TodaySales from '../components/TodaySales';
 import Return from '../components/Return';
 import PriceList from '../components/PriceList';
 
+import { connect } from 'react-redux';
+import { getItems } from '../../../store/actions/product';
+
 const Option = Select.Option;
 const { TabPane } = Tabs;
 
@@ -15,6 +18,13 @@ class Sales extends Component {
         super(props);
         this.state = { showTemplate: false, partyColors: ["#000000"] };
     }
+
+    componentDidMount() {
+        if (!this.props.items) {
+            this.props.getItems();
+        }
+    }
+
     onQuantityChange = () => {
 
     }
@@ -36,7 +46,7 @@ class Sales extends Component {
                             <Return />
                         </TabPane>
                         <TabPane tab="Price List" key="3">
-                            <PriceList getPriceList={this.getPriceList} />
+                            <PriceList getPriceList={this.getPriceList} items={this.props.items} />
                         </TabPane>
                     </Tabs>
 
@@ -47,10 +57,11 @@ class Sales extends Component {
 
     }
 
-
-
-
-
-
 }
-export default Sales;
+const mapStateToProps = (state) => {
+    return {
+        items: state.productReducer && state.productReducer.items
+    }
+}
+
+export default connect(mapStateToProps, { getItems })(Sales);

@@ -74,7 +74,7 @@ class Shell extends Component {
                     path = RoutePath.REPORTS;
                     break;
                 }
-            case "stock-details":
+            case "stock_details":
                 {
                     path = RoutePath.STOCK_DETAILS;
                     break;
@@ -209,30 +209,49 @@ class Shell extends Component {
                                 theme="dark"
                                 onClick={this.handleClick}>
 
-                                <Menu.Item key="party-members" title={
+                                <Menu.Item key="sales">
+                                    <Icon type="snippets" />
                                     <span>
-                                        <Icon type="team" />
-                                        <span >
-                                            Dealers/Suppliers
-                                        </span>
-                                    </span>}>
+                                        Billing
+                                    </span>
                                 </Menu.Item>
 
-                                <Menu.Item key="reoprts" title={
+                                <Menu.Item key="investments">
+                                    <Icon type="wallet" />
                                     <span>
-                                        <Icon type="bar-chart" />
-                                        <span >
-                                            Reports
-                                        </span>
-                                    </span>}>
-
+                                        Purchases
+                                    </span>
                                 </Menu.Item>
-                                <Menu.Item key="ecard">
-                                    <Icon type="idcard" />
+
+                                <Menu.Item key="dealers">
+                                    <Icon type="user" className="menu_icon" />
+                                    <span>
+                                        Dealers
+                                    </span>
+                                </Menu.Item>
+
+                                <Menu.Item key="stock_details">
+                                    <Icon type="stock" />
+                                    <span>
+                                        Inventory
+                                    </span>
+                                </Menu.Item>
+
+                                <Menu.Item key="reports">
+                                    <Icon type="bar-chart" />
+                                    <span>
+                                        Reports
+                                    </span>
+                                </Menu.Item>
+
+                                <Menu.Item key="settings">
+                                    <Icon type="setting" />
                                     <span>
                                         Settings
                                     </span>
                                 </Menu.Item>
+
+
                             </Menu>
                         </div>
                     </Drawer>

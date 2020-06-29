@@ -1,16 +1,11 @@
 
 import React, { useState } from 'react';
-import { Form, Table, DatePicker, Input, Select, Button, InputNumber } from 'antd';
-import { useTheme } from '@material-ui/core';
-import moment from 'moment';
+import {  Table, Input, Select, Button } from 'antd';
 import Modal from '../../../common/modal';
-import { getCurrentDate } from '../../../utils';
 import AddNew from './AddNew';
 
 const Option = Select.Option;
 const { Search } = Input;
-
-const dateFormatList = ['DD/MM/YYYY', 'DD/MM/YY'];
 
 const categories = [{ name: "Electrical", code: "EL" },
 { name: "Plumbing", code: "PL" },
@@ -57,8 +52,8 @@ const columns = [
 
     {
         title: 'Available Quantity',
-        dataIndex: 'quantity',
-        key: 'quantity',
+        dataIndex: 'stock_quantity',
+        key: 'stock_quantity',
         ellipsis: true,
         render: (text, row) => row.unit ? <span>{`${text} - ${row.unit}`}</span> : <span>{text}</span>,
 
@@ -66,13 +61,13 @@ const columns = [
 
     {
         title: 'Order Required',
-        dataIndex: 'units',
-        key: 'units',
+        dataIndex: 'order_alarm_when',
+        key: 'order_alarm_when',
         ellipsis: true,
         order_alarm_when: 10,
         render: (text, row) => {
             return (
-                row.quantity <= row.order_alarm_when ?
+                row.stock_quantity <= row.order_alarm_when ?
                     <span className="yes"> YES
                     <button className="place-order-btn">Place order</button>
                     </span> : <span className="no"> NO
@@ -241,6 +236,7 @@ const products = [{
 ];
 
 const StockList = (props) => {
+    console.log('PRR', props.items);
     let defaultCategory = (categories && categories.length > 0) ? categories[0].name : null;
     let defaultBrand = (brands && brands.length > 0) ? brands[0].name : null;
 
@@ -305,7 +301,7 @@ const StockList = (props) => {
             </div>
 
 
-            <Table dataSource={products}
+            <Table dataSource={props.items}
                 pagination={{ pageSize: 40 }}
                 columns={columns}
                 bordered

@@ -10,10 +10,10 @@ const onFail = msg => ({
     msg
 });
 
-const onLoginSuccess = payload => {
+const onGetItemSuccess = payload => {
     return {
         payload,
-        type: TYPES.LOGIN,
+        type: TYPES.GET_ITEMS,
     };
 };
 
@@ -23,28 +23,26 @@ const onAddItemSuccess = payload => {
         type: TYPES.ADD_ITEM,
     };
 };
-export const userLogin = (user) => {
+export const getItems = () => {
     return (dispatch) => {
-        fetch(API.auth.authenticate, {
-            method: 'POST',
-            body: JSON.stringify(user),
-            headers: { 'Content-Type': 'application/json' },
+        fetch(API.products.getItems, {
+            method: 'GET'
         }).then((response) => response.json())
             .then((responseJson) => {
-                dispatch(onLoginSuccess(responseJson));
+                dispatch(onGetItemSuccess(responseJson));
             }
             )
             .catch(error => {
-                dispatch(onLoginSuccess(error))
+                dispatch(onGetItemSuccess(error))
             })
-        
+
     };
 
 }
 
 export const addNewItem = (item) => {
     return (dispatch) => {
-        fetch(API.product.add, {
+        fetch(API.products.add, {
             method: 'POST',
             body: JSON.stringify(item),
             headers: { 'Content-Type': 'application/json' },
