@@ -35,6 +35,10 @@
             flex-direction: column;
             justify-content: flex-start;
             align-items: flex-start;
+            @include media-mobile{
+               align-items: center;
+            }
+            padding-top: 20px;
         }
         button{
             background-color: $primaryColor;
@@ -52,10 +56,10 @@
             height: 32px;
             @include media-mobile{
                 height: 40px;
-                width: 35%;
+                width: 100%;
             }
-            width: 40%;
-            margin-right: 20px;
+            width: 100%;
+            //margin-right: 20px;
         }
         .last{
             margin-right: 0px;
@@ -147,7 +151,7 @@
         }
         .bottom{
             padding-top: 20px;
-            justify-content: flex-end;
+            justify-content: space-between;
         }
         .bill-container{
             width: 100%;

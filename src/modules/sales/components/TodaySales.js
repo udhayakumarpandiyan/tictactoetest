@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import { Select, InputNumber, Button, Table, Input } from 'antd';
+import { Select, InputNumber, Button, Table, Input, Form } from 'antd';
 import { getCurrentDate } from '../../../utils/index';
 
 const Option = Select.Option;
-const products = [{ name: "Gol", code: "23", price: 100, quantity: 2 },
-{ name: "Golsad", code: "2asd3", price: 10, quantity: 5 }];
-
 const columns = [
     {
         title: 'Qty',
@@ -42,26 +39,23 @@ const name = "Jayam electricals";
 const address1 = "# 5, A.R.S complex, Kumbakonam road, Panikkankuppam";
 const address2 = "Panruti - 607106";
 
-const total = products.reduce(
-    (accumulator, currentValue) => accumulator + currentValue.price * currentValue.quantity
-    , 0
-)
-
-
-
-const TodaySales = (props) => {
+const TodaySalesForm = (props) => {
     const [showBill, changeShowBill] = useState(false);
-    const [amount, changeAmount] = useState(total);
+    const [amount, changeAmount] = useState(0);
     const [balance, changeBalance] = useState(0);
+    const [items, setItems] = useState([]);
+    const [total, setTotal] = useState(0);
+
+    let { getFieldDecorator } = props.form;
 
 
-    let date = new Date();
-    let month = date.getMonth();
-    month = month + 1;
-    month = month < 9 ? '0' + month : month;
-    let localDate = date.getDate();
-    localDate = localDate < 10 ? '0' + localDate : localDate;
-    let currentDate = date.getFullYear() + '-' + month + '-' + localDate;
+    // let date = new Date();
+    // let month = date.getMonth();
+    // month = month + 1;
+    // month = month < 9 ? '0' + month : month;
+    // let localDate = date.getDate();
+    // localDate = localDate < 10 ? '0' + localDate : localDate;
+    // let currentDate = date.getFullYear() + '-' + month + '-' + localDate;
 
 
 
@@ -82,57 +76,144 @@ const TodaySales = (props) => {
         changeShowBill(false);
     }
 
+    const goNext = (event) => {
+       // var item = { name: '' };
+        event.preventDefault();
+        props.form.validateFieldsAndScroll((err, values) => {
+            if (!err) {
+                let item = {
+                    quantity: values.quantity,
+                    name: values.code,
+                    price: values.price,
+                    totalPrice: values.quantity * values.price
+                }
+                addItem(item);
+
+            }
+        });
+
+    }
+    const goBack = () => {
+
+    }
+    const addItem =(item) =>{
+        items.push(item);
+        let total = items.reduce(
+            (accumulator, currentValue) => accumulator + currentValue.price * currentValue.quantity
+            , 0
+        );
+        setTotal(total);
+        setItems(items);
+
+    }
 
     return (
         <div className="content_container">
             {!showBill ? <div className="sales">
-                <div className="inner-container">
-                    <label>Bill Number </label>
-                    <InputNumber min={0} max={100000} defaultValue={1}
-                        placeHolder="Quantity" onChange={props.onQuantityChange} />
-                    <input className="input" type="date" value={getCurrentDate()} />
-                </div>
+                <Form className="newitem-form">
+                    {/* <Form.Item>
+                        <Input 
+                            placeHolder="Bill number" contentEditable={false}
+                            onChange={props.onBillNumberChange} />
+                    </Form.Item>
+                    <Form.Item>
+                        <input className="input" type="date" value={getCurrentDate()} />
+                    </Form.Item> */}
+                    <Form.Item label="Item category">
+                        {getFieldDecorator('category', {
+                            rules: [{
+                                required: true, message: 'Please select item category',
+                            },
+                            {
+                                validator: ''
+                            }],
+
+                        })(
+                            <Select placeholder="Category" className="dropdown">
+                                {productCategory.map((category, index) => (
+                                    <Option key={category.id} value={category.name}>{category.name}</Option>
+                                ))
+                                }
+                            </Select>
+                        )}
+
+                    </Form.Item>
 
 
-                <div className="inner-container">
-                    <label>Product</label>
-                    <Select placeholder="Category" className="dropdown">
-                        {productCategory.map((category, index) => (
-                            <Option key={category.id} value={category.name}>{category.name}</Option>
-                        ))
-                        }
-                    </Select>
+                    <Form.Item label="Item code">
+                        {getFieldDecorator('code', {
+                            rules: [{
+                                required: true, message: 'Please select item category',
+                            },
+                            {
+                                validator: ''
+                            }],
 
-                    <Select placeholder="Code" className="dropdown last" mode="combobox">
-                        <Option key="MMroduct">MMroduct</Option>
-                        <Option key="Product">Product</Option>
-                    </Select>
-                </div>
-
-                <div className="inner-container">
-                    <label>Price </label>
-                    <InputNumber min={0} max={100000} defaultValue={1}
-                        placeHolder="Quantity" onChange={props.onQuantityChange} />
-                </div>
+                        })(
+                            <Select placeholder="Code" className="dropdown last" mode="combobox">
+                                <Option key="MMroduct">MMroduct</Option>
+                                <Option key="Product">Product</Option>
+                            </Select>
+                        )}
+                    </Form.Item>
 
 
-                <div className="inner-container">
-                    <label>Quantity </label>
-                    <InputNumber min={1} max={1000} defaultValue={1}
-                        placeHolder="Quantity" onChange={props.onQuantityChange} />
-                    <Select placeholder="Piece(s)" mode="combobox">
-                        <Option key="pieces">Pieces</Option>
-                        <Option key="meters">Meters</Option>
-                        <Option key="kg">Kilogram</Option>
-                        <Option key="grams">Product</Option>
-                        <Option key="ml">Liter</Option>
 
-                    </Select>
-                </div>
+                    <Form.Item label="Item price">
+                        {getFieldDecorator('price', {
+                            rules: [{
+                                required: true, message: 'Please enter price',
+                            },
+                            ],
+
+                        })(
+                            <InputNumber min={0} max={100000} defaultValue={1}
+                                placeHolder="Price" onChange={props.onQuantityChange} />
+                        )}
+
+                    </Form.Item>
+
+
+                    <Form.Item label="No.of items">
+                        {getFieldDecorator('quantity', {
+                            rules: [{
+                                required: true, message: 'Please enter quantity',
+                            },
+                            ],
+
+                        })(
+                            <InputNumber min={0} max={100000} defaultValue={1}
+                                placeHolder="Quantity" onChange={props.onQuantityChange} />
+                        )}
+
+                    </Form.Item>
+
+                    <Form.Item label="Unit">
+                        {getFieldDecorator('unit', {
+                            rules: [{
+                                required: true, message: 'Please select unit',
+                            },
+                            ],
+
+                        })(
+                            <Select placeholder="Piece(s)" mode="combobox">
+                                <Option key="pieces">Pieces</Option>
+                                <Option key="meters">Meters</Option>
+                                <Option key="kg">Kilogram</Option>
+                                <Option key="grams">Product</Option>
+                                <Option key="ml">Liter</Option>
+                                <Option key="ml">Grams</Option>
+
+                            </Select>
+                        )}
+
+                    </Form.Item>
+
+                </Form>
 
                 <div className="inner-container bottom">
-                    <label></label>
-                    <Button> Next Product </Button>
+                    <Button onClick={goBack}> {`<< Previous item`} </Button>
+                    <Button onClick={goNext}> {`Next item >>`} </Button>
                 </div>
 
                 <div className="submit-container">
@@ -156,10 +237,10 @@ const TodaySales = (props) => {
                             </div>
                             <div className="bill-date-container">
                                 <label>Bill no : {props.billno} </label>
-                                <label>Date : {props.date}</label>
+                                <label>Date : {getCurrentDate('-', 'DD/MM/YYYY')}</label>
                             </div>
                         </div>
-                        <Table dataSource={products}
+                        <Table dataSource={items}
                             size={10}
                             pagination={false}
                             columns={columns}
@@ -188,4 +269,5 @@ const TodaySales = (props) => {
 
     )
 }
+const TodaySales = Form.create()(TodaySalesForm);
 export default TodaySales;
