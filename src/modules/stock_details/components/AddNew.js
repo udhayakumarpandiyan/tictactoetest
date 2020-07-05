@@ -59,12 +59,14 @@ const AddNewForm = (props) => {
     const showConfirmation = (values) => {
 
         let originalPrice = values.price - (values.price * values.deduction / 100);
-        originalPrice = originalPrice + (originalPrice * values.gst / 100);
+        originalPrice = (Number(originalPrice + (originalPrice * values.gst / 100))).toFixed(2);
+
+        let sellingPrice=  (Number(originalPrice) +(Number(originalPrice * Number(values.profit)/100))).toFixed(2);
 
         let item = {
             code: setItemCode(values),
             originalPrice: originalPrice,
-            sellingPrice: originalPrice + (originalPrice * values.profit / 100)
+            sellingPrice: sellingPrice
         }
         setShowDetails(!showDetails);
         setItemDetails(item);
@@ -105,11 +107,11 @@ const AddNewForm = (props) => {
                 <Form.Item label="Item Code : ">
                     <label>{itemDetails.code}</label>
                 </Form.Item>
-                <Form.Item label="Item Code : ">
-                    <label>{itemDetails.originalPrice}</label>
+                <Form.Item label="Original price : ">
+                    <label>Rs. {itemDetails.originalPrice}</label>
                 </Form.Item>
-                <Form.Item label="Item Code : ">
-                    <label>{itemDetails.sellingPrice}</label>
+                <Form.Item label="Selling price : ">
+                    <label>Rs. {itemDetails.sellingPrice}</label>
                 </Form.Item>
             </Form>
             <div className="modal-bottom-content">

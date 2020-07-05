@@ -26,12 +26,8 @@ class Sales extends Component {
             this.props.getItems();
         }
         // if (!this.props.bills) {
-            this.props.getBills();
+        this.props.getBills();
         //}
-    }
-
-    onQuantityChange = () => {
-
     }
     getPriceList = () => {
 
@@ -49,7 +45,9 @@ class Sales extends Component {
                     <Tabs tabPosition={this.state.tabPosition}>
                         <TabPane tab="Billing" key="1">
                             <TodaySales onQuantityChange={this.onQuantityChange}
-                                onSubmitBill={this.onSubmitBill} bills={this.props.bills}/>
+                                items={this.props.items}
+                                onSubmitBill={this.onSubmitBill}
+                                bills={this.props.bills} />
                         </TabPane>
 
                         <TabPane tab="Sales-return" key="2">

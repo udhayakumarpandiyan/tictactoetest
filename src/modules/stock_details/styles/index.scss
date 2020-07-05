@@ -193,6 +193,10 @@
     .ant-row , .ant-form-item{
         width: 45%;
         text-align: start;
+        background-color: #fff;
+        border-radius: 6px;
+        //box-shadow: 2px 0px 10px 1px rgba($color: #666666, $alpha: 0.25);
+       // padding: 10px;
         @include media-mobile{
             display: flex;
             flex-direction: row;

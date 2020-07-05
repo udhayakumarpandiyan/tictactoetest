@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Select, InputNumber, Button, Table, Input, Form } from 'antd';
 import { getCurrentDate } from '../../../utils/index';
 
@@ -46,13 +46,16 @@ const TodaySalesForm = (props) => {
     const [balance, changeBalance] = useState(undefined);
     const [items, setItems] = useState([]);
     const [total, setTotal] = useState(0);
+    const [currentItem, setCurrentItem] = useState(undefined);
+    const [item, setItem] = useState({ name: '', selling_price: 0 });
 
     let { getFieldDecorator } = props.form;
     let isDuplicateItem = false;
 
-    let billNumber = props.bills && props.bills.length > 0 ? props.bills[props.bills.length - 1].bill_number + 1 : 1;
+    let billNumber = props.bills && props.bills.length > 0 ? Number(props.bills[props.bills.length - 1].bill_number) + 1 : 1;
 
     const onGenerateBill = () => {
+        isDuplicateItem = false;
         changeShowBill(true);
     }
 
@@ -64,22 +67,26 @@ const TodaySalesForm = (props) => {
     }
 
     const onAmountChange = (event) => {
-        let balance = amount - event.target.value;
+        let balance = total - roundOffAmount - event.target.value;
         changeBalance(balance);
     }
     const goBackToSalesEntry = () => {
         changeShowBill(false);
+        console.log("Item:", currentItem);
     }
 
     const goNext = (event) => {
         event.preventDefault();
+
         props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 let item = {
+                    category: values.category,
                     quantity: values.quantity,
                     name: values.code,
                     price: values.price,
-                    totalPrice: values.quantity * values.price
+                    totalPrice: values.quantity * values.price,
+                    unit: values.unit
                 }
                 items.forEach((item, index) => {
                     if (item.name === values.code) {
@@ -88,6 +95,8 @@ const TodaySalesForm = (props) => {
                 })
                 if (!isDuplicateItem) {
                     addItem(item);
+
+
                 }
 
             }
@@ -105,11 +114,13 @@ const TodaySalesForm = (props) => {
         );
         setTotal(total);
         setItems(items);
+        setItem({});
+        handleCurrentItem(items[items.length - 1]);
 
     }
 
     const onSubmitClick = (event) => {
-
+        setItems([]);
         let bill = {
             bill_number: billNumber,
             billing_items: items,
@@ -126,29 +137,45 @@ const TodaySalesForm = (props) => {
         props.onSubmitBill(bill);
     }
 
+    const handleCurrentItem = (item) => {
+        setCurrentItem(item);
+        props.form.resetFields();
+    }
+
+    const onQuantityChange = (value) => {
+        let currentItem = {};
+        currentItem.quantity = value;
+        setCurrentItem(currentItem);
+
+    }
+    const onCodeChange = (value) => {
+        if (props.items) {
+            let item = props.items.filter((item) => {
+                return item.code === value;
+            })[0];
+            setItem(item);
+        }
+
+    }
     return (
         <div className="content_container">
             {!showBill ? <div className="sales">
                 <Form className="newitem-form">
-                    {/* <Form.Item>
-                        <Input 
-                            placeHolder="Bill number" contentEditable={false}
-                            onChange={props.onBillNumberChange} />
-                    </Form.Item>
-                    <Form.Item>
-                        <input className="input" type="date" value={getCurrentDate()} />
-                    </Form.Item> */}
                     <Form.Item label="Item category">
                         {getFieldDecorator('category', {
                             rules: [{
                                 required: true, message: 'Please select item category',
+                                initialValue: currentItem && currentItem.category
                             },
                             {
                                 validator: ''
                             }],
 
                         })(
-                            <Select placeholder="Category" className="dropdown">
+                            <Select placeholder="Category" name="category"
+                                type="category"
+                                value={currentItem && currentItem.category}
+                                className="dropdown">
                                 {productCategory.map((category, index) => (
                                     <Option key={category.id} value={category.name}>{category.name}</Option>
                                 ))
@@ -163,46 +190,73 @@ const TodaySalesForm = (props) => {
                         {getFieldDecorator('code', {
                             rules: [{
                                 required: true, message: 'Please select item category',
+                                initialValue: currentItem && currentItem.code
                             },
                             {
                                 validator: ''
                             }],
 
                         })(
-                            <Select placeholder="Code" className="dropdown last" mode="combobox">
-                                <Option key="MMroduct">MMroduct</Option>
-                                <Option key="Product">Product</Option>
+                            <Select placeholder="Code" className="dropdown last"
+                                mode="combobox" onChange={onCodeChange}
+                                name="code" type="code">
+                                {
+                                    props.items && props.items.map((item, index) => {
+                                        return (
+                                            <Option key={item.code}>{item.code}</Option>
+                                        )
+                                    })
+                                }
                             </Select>
                         )}
                     </Form.Item>
 
+                    <Form.Item label="Item name">
+                        {getFieldDecorator('name', {
+                            initialValue: item && item.name,
+                            rules: [{
+                                required: true, message: 'Please enter name',
+
+                            },
+                            ],
+
+                        })(
+                            <Input name="name" type="name"
+                                value={item && item.name}
+                                placeHolder="Name" />
+                        )}
+
+                    </Form.Item>
 
 
                     <Form.Item label="Item price">
                         {getFieldDecorator('price', {
+                            initialValue: item && item.selling_price,
                             rules: [{
                                 required: true, message: 'Please enter price',
                             },
                             ],
 
                         })(
-                            <InputNumber min={0} max={100000} defaultValue={1}
-                                placeHolder="Price" onChange={props.onQuantityChange} />
+                            <Input name="price" type="price"
+                                value={item && item.selling_price}
+                                placeHolder="Price" />
                         )}
 
                     </Form.Item>
 
-
-                    <Form.Item label="No.of items">
+                    <Form.Item label="Quantity">
                         {getFieldDecorator('quantity', {
                             rules: [{
                                 required: true, message: 'Please enter quantity',
+                                /// intialValue: currentItem && currentItem.quantity 
                             },
                             ],
 
                         })(
-                            <InputNumber min={0} max={100000} defaultValue={1}
-                                placeHolder="Quantity" onChange={props.onQuantityChange} />
+                            <InputNumber name="quantity" type="quantity"
+                                min={1} max={100000} value={currentItem && currentItem.quantity}
+                                placeHolder="Quantity" onChange={onQuantityChange} />
                         )}
 
                     </Form.Item>
@@ -211,18 +265,16 @@ const TodaySalesForm = (props) => {
                         {getFieldDecorator('unit', {
                             rules: [{
                                 required: true, message: 'Please select unit',
+                                initialValue: currentItem && currentItem.unit
                             },
                             ],
 
                         })(
-                            <Select placeholder="Piece(s)" mode="combobox">
-                                <Option key="pieces">Pieces</Option>
-                                <Option key="meters">Meters</Option>
-                                <Option key="kg">Kilogram</Option>
-                                <Option key="grams">Product</Option>
-                                <Option key="ml">Liter</Option>
-                                <Option key="ml">Grams</Option>
-
+                            <Select placeholder="Piece(s)" defaultValue={0} type="unit" name="unit">
+                                <Option key="pieces" value="pieces">Pieces</Option>
+                                <Option key="meters" value="meters">Meters</Option>
+                                <Option key="kg" value="kilograms">Kilogram</Option>
+                                <Option key="grams" value="grams">Product</Option>
                             </Select>
                         )}
 
@@ -255,7 +307,7 @@ const TodaySalesForm = (props) => {
 
                             </div>
                             <div className="bill-date-container">
-                                <label>Bill no : {props.billno} </label>
+                                <label>Bill no : {billNumber} </label>
                                 <label>Date : {getCurrentDate('-', 'DD/MM/YYYY')}</label>
                             </div>
                         </div>
