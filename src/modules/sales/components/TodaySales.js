@@ -41,30 +41,25 @@ const address2 = "Panruti - 607106";
 
 const TodaySalesForm = (props) => {
     const [showBill, changeShowBill] = useState(false);
-    const [amount, changeAmount] = useState(0);
-    const [balance, changeBalance] = useState(0);
+    const [amount, changeAmount] = useState(undefined);
+    const [roundOffAmount, setRoundOffAmount] = useState(undefined);
+    const [balance, changeBalance] = useState(undefined);
     const [items, setItems] = useState([]);
     const [total, setTotal] = useState(0);
 
     let { getFieldDecorator } = props.form;
+    let isDuplicateItem = false;
 
-
-    // let date = new Date();
-    // let month = date.getMonth();
-    // month = month + 1;
-    // month = month < 9 ? '0' + month : month;
-    // let localDate = date.getDate();
-    // localDate = localDate < 10 ? '0' + localDate : localDate;
-    // let currentDate = date.getFullYear() + '-' + month + '-' + localDate;
-
-
+    let billNumber = props.bills && props.bills.length > 0 ? props.bills[props.bills.length - 1].bill_number + 1 : 1;
 
     const onGenerateBill = () => {
         changeShowBill(true);
     }
 
     const onRoundOffChange = (event) => {
-        let amount = total - event.target.value;
+        let roundOffAmount = event.target.value;
+        let amount = total - roundOffAmount;
+        setRoundOffAmount(Number(roundOffAmount));
         changeAmount(amount);
     }
 
@@ -77,7 +72,6 @@ const TodaySalesForm = (props) => {
     }
 
     const goNext = (event) => {
-        // var item = { name: '' };
         event.preventDefault();
         props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
@@ -87,7 +81,14 @@ const TodaySalesForm = (props) => {
                     price: values.price,
                     totalPrice: values.quantity * values.price
                 }
-                addItem(item);
+                items.forEach((item, index) => {
+                    if (item.name === values.code) {
+                        isDuplicateItem = true;
+                    }
+                })
+                if (!isDuplicateItem) {
+                    addItem(item);
+                }
 
             }
         });
@@ -107,21 +108,21 @@ const TodaySalesForm = (props) => {
 
     }
 
-    const onSubmitClick = () => {
+    const onSubmitClick = (event) => {
+
         let bill = {
-            bill_number: 1,
+            bill_number: billNumber,
             billing_items: items,
             billing_amount: total,
             customer_type: 'customer',
-            paid_amount: total,
+            paid_amount: amount,
             billing_date: new Date(),
             customer_name: 'Murugan',
-            roundOff_amount: 0,
-            commission_amount: 0,
-            balance_amount: 0
+            round_off_amount: roundOffAmount,
+            commission_amount: total / 10,
+            balance_amount: balance
         }
 
-       console.log("Bill: ", bill);
         props.onSubmitBill(bill);
     }
 
@@ -235,7 +236,7 @@ const TodaySalesForm = (props) => {
                 </div>
 
                 <div className="submit-container">
-                    <Button onClick={onGenerateBill}>GENERATE BILL</Button>
+                    <Button disabled={items.length === 0} onClick={onGenerateBill}>GENERATE BILL</Button>
                 </div>
 
             </div>
@@ -270,14 +271,14 @@ const TodaySalesForm = (props) => {
                         </div>
                         <div className="bottom-container">
                             <Input placeholder="Round-off amount" onChange={onRoundOffChange} />
-                            <Input placeholder="Amount" disabled={true} value={amount} />
+                            <Input placeholder="Amount" contentEditable={false} value={amount} />
                             <Input placeholder="Amount Paid" onChange={onAmountChange} />
-                            <Input placeholder="Balance to be paid: Rs" disabled={true} value={balance} />
+                            <Input placeholder="Balance to be paid: Rs" contentEditable={false} value={balance} />
 
                         </div>
                     </div>
                     <div className="submit-container">
-                        <Button onClick={onSubmitClick}>SUBMIT BILL </Button>
+                        <Button disabled={items.length === 0} onClick={onSubmitClick}>SUBMIT BILL </Button>
                     </div>
                 </div>
 

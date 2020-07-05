@@ -7,7 +7,8 @@ import PriceList from '../components/PriceList';
 
 import { connect } from 'react-redux';
 import { getItems } from '../../../store/actions/product';
-import { saveBill } from '../../../store/actions/billing';
+import { saveBill, getBills } from '../../../store/actions/billing';
+import Bills from '../components/Bills';
 
 const Option = Select.Option;
 const { TabPane } = Tabs;
@@ -24,6 +25,9 @@ class Sales extends Component {
         if (!this.props.items) {
             this.props.getItems();
         }
+        // if (!this.props.bills) {
+            this.props.getBills();
+        //}
     }
 
     onQuantityChange = () => {
@@ -45,15 +49,19 @@ class Sales extends Component {
                     <Tabs tabPosition={this.state.tabPosition}>
                         <TabPane tab="Billing" key="1">
                             <TodaySales onQuantityChange={this.onQuantityChange}
-                                onSubmitBill={this.onSubmitBill} />
+                                onSubmitBill={this.onSubmitBill} bills={this.props.bills}/>
                         </TabPane>
 
                         <TabPane tab="Sales-return" key="2">
                             <Return />
                         </TabPane>
-                        <TabPane tab="Price List" key="3">
+                        <TabPane tab="Bills" key="3">
+                            <Bills bills={this.props.bills} />
+                        </TabPane>
+                        <TabPane tab="Price List" key="4">
                             <PriceList getPriceList={this.getPriceList} items={this.props.items} />
                         </TabPane>
+
                     </Tabs>
 
                 </Col>
@@ -67,8 +75,9 @@ class Sales extends Component {
 const mapStateToProps = (state) => {
     return {
         items: state.productReducer && state.productReducer.items,
-        saved: state.billingReducer && state.billingReducer.saved
+        saved: state.billingReducer && state.billingReducer.saved,
+        bills: state.billingReducer && state.billingReducer.bills
     }
 }
 
-export default connect(mapStateToProps, { getItems, saveBill })(Sales);
+export default connect(mapStateToProps, { getItems, saveBill, getBills })(Sales);

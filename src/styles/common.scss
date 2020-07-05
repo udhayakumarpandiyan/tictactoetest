@@ -74,12 +74,12 @@
                 .submit {
                     border: none;
                     color: #ffffff;
-                    background-color: $primaryColor;
+                    background-color: $secondaryColor;
                 }
 
                 .cancel {
                     background-color: transparent;
-                    border: 1px solid $primaryColor;
+                    border: 1px solid $secondaryColor;
                 }
             }
 
@@ -130,14 +130,14 @@ option {
     min-width: 80px;
     border-radius: 4px;
     border: none;
-    background-color: $primaryColor;
+    background-color: $secondaryColor;
     color: $secondaryTextColor;
     //box-shadow: 0px 0px 4px 0px $primaryColor;
     cursor: pointer;
 }
 
 .button:hover {
-    box-shadow: 0px 0px 2px 1px $primaryColor;
+   // box-shadow: 0px 0px 2px 1px $secondaryColor;
 }
 
 // tab bar

@@ -64,7 +64,6 @@ const columns = [
         dataIndex: 'order_alarm_when',
         key: 'order_alarm_when',
         ellipsis: true,
-        order_alarm_when: 10,
         render: (text, row) => {
             return (
                 row.stock_quantity <= row.order_alarm_when ?

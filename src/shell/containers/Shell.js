@@ -5,7 +5,7 @@ import AppHeader from '../components/AppHeader';
 import MainContent from '../components/Content';
 import HomePage from '../../modules/home/containers/HomePage';
 import { Layout, Button, Drawer, Icon, Menu } from 'antd';
-import { LogoIcon } from '../../constants/Icons';
+import { LogoIcon,ADMKIcon } from '../../constants/Icons';
 
 import { connect } from 'react-redux';
 import { changeLanguage } from '../../store/actions/language';
@@ -181,7 +181,7 @@ class Shell extends Component {
                                 backgroundColor: "#fff",
                                 margin: '25px 36px'
                             }}>
-                                <img src={''}
+                                <img src={ADMKIcon} alt-="/"
                                     style={{
                                         height: "72px", width: "72px",
                                         borderRadius: '100em'
@@ -198,10 +198,15 @@ class Shell extends Component {
                         headerStyle={{
                             height: "130px",
                             color: '#ffffff',
-                            backgroundColor: "#001529",
+                            marginTop: "60px",
+                            backgroundColor: "#232f3e",
                             borderBottom: "none",
                         }}
-                        bodyStyle={{ padding: '0px', backgroundColor: "#001529", height: "79.5%" }}
+                        bodyStyle={{
+                            padding: '0px',
+                            overflowY:'hidden',
+                            backgroundColor: "#232f3e", height: "79.5%"
+                        }}
                     >
                         <div className="menu_container">
                             <Menu

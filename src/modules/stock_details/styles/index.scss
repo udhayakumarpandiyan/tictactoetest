@@ -200,6 +200,7 @@
         }
         .ant-form-item-label{
             width: 100%;
+            text-align: start;
             @include media-mobile{
                 width: 50%;
             }

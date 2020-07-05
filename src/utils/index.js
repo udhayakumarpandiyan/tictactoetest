@@ -18,3 +18,14 @@ export const getCurrentDate = (symbol = '-', format = "YYYY/MM/DD") => {
 
 
 }
+
+export const getDate =(dateStamp) =>{
+    let date = new Date(dateStamp);
+    let month = date.getMonth();
+    month = month + 1;
+    month = month < 9 ? '0' + month : month;
+    let localDate = date.getDate();
+    localDate = localDate < 10 ? '0' + localDate : localDate;
+
+    return localDate + '/' + month + '/' + date.getFullYear();
+}

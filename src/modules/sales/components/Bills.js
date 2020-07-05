@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
-import { Row, Col, Table, Select, Input } from 'antd';
+import { Table, Select, Input } from 'antd';
+import { getDate } from '../../../utils/index';
 
 const Option = Select.Option;
 const { Search } = Input;
@@ -24,49 +25,49 @@ const brands = [{ name: "Fybros", category: "Electrical" },
 
 const columns = [
     {
-        title: 'Item name',
-        dataIndex: 'name',
-        key: 'name',
-    },
-    {
-        title: 'Item code',
-        dataIndex: 'code',
-        key: 'code',
+        title: 'Bill number',
+        dataIndex: 'bill_number',
+        key: 'bill_number',
         ellipsis: true
     },
     {
-        title: 'Category',
-        dataIndex: 'category',
-        key: 'category',
+        title: 'Billing date',
+        dataIndex: 'billing_date',
+        key: 'billing_date',
+        render: (text, row) => {
+            return (
+                <span>{getDate(row.billing_date)}</span>
+            )
+        }
+    },
+    {
+        title: 'Customer',
+        dataIndex: 'customer_name',
+        key: 'customer_name',
+        ellipsis: true
+    },
+    {
+        title: 'Bill Amount',
+        dataIndex: 'billing_amount',
+        key: 'billing_amount',
     },
 
     {
-        title: 'Brand',
-        dataIndex: 'brand',
-        key: 'brand',
+        title: 'Paid Amount',
+        dataIndex: 'paid_amount',
+        key: 'paid_amount',
         ellipsis: true,
     },
     {
-        title: 'Price',
-        dataIndex: 'original_price',
-        key: 'original_price',
+        title: 'Balance Amount',
+        dataIndex: 'balance_amount',
+        key: 'balance_amount',
         ellipsis: true,
-    },
-    {
-        title: 'Price',
-        dataIndex: 'selling_price',
-        key: 'selling_price',
-        ellipsis: true,
-        render: (text, row) => <span>{`${text} / ${row.unit}`}</span>,
-
-
-    },
-
+    }
 ];
 
-const products = [{ name: "9W LED Bulb", code: "9WGoldMedal", category: "Electrical", brand: "Gold Medal", price: "90.00", unit: "piece" }];
 
-const PriceList = (props) => {
+const Bills = (props) => {
     let defaultCategory = (categories && categories.length > 0) ? categories[0].name : null;
     let defaultBrand = (brands && brands.length > 0) ? brands[0].name : null;
 
@@ -95,23 +96,8 @@ const PriceList = (props) => {
     return (
         <div className="pricelist-container">
             <div className="top-container">
-            <label>Filter by </label>
-                <div className="left-container"> 
-                    <Select placeholder="Select Catergory"
-                        defaultValue={defaultCategory}
-                        className="dropdown"
-                        onChange={onCategorySelect}>
-                        {categories.map((category, index) => (
-                            <Option key={"option" + index} value={category.name}>{category.name}</Option>
-                        ))}
-                    </Select>
 
-                    <Select placeholder="Select Brand" defaultValue={defaultBrand}
-                        className="dropdown" onChange={(event) => onBrandSelect(event)}>
-                        {brands.map((brand, index) => (
-                            <Option key={index} value={brand.name}>{brand.name}</Option>
-                        ))}
-                    </Select>
+                <div className="left-container">
                 </div>
                 <div className="right-container">
                     <Search placeholder="Search"
@@ -121,7 +107,7 @@ const PriceList = (props) => {
                 </div>
             </div>
 
-            <Table dataSource={props.items}
+            <Table dataSource={props.bills}
                 pagination={{ pageSize: 40 }}
                 columns={columns}
                 bordered
@@ -129,4 +115,4 @@ const PriceList = (props) => {
         </div>
     )
 }
-export default PriceList;
+export default Bills;

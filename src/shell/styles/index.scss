@@ -250,6 +250,11 @@
                         text-align: left;
                         padding-left: 0px;
                         font-size: 16px;
+                        background-color: $primaryColor;
+
+                    }
+                    .ant-menu-dark, .ant-menu-dark .ant-menu-sub{
+                        background-color: $primaryColor;
                     }
 
                     .ant-menu-dark .ant-menu-inline.ant-menu-sub {
@@ -323,9 +328,8 @@
     }
 
     .menu_hambuger {
-
-        position: absolute;
-        top: 8px;
+        position: fixed;
+        top: 10px;
         left: 8px;
         z-index: 10000;
 
@@ -352,6 +356,7 @@
 
         .ant-drawer-left.ant-drawer-open .ant-drawer-content-wrapper {
             width: 300px !important;
+            z-index: 100000;
         }
 
         .drawer-content-style {

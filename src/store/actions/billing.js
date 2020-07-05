@@ -8,6 +8,13 @@ const onSaveBillSuccess = payload => {
     };
 };
 
+const onGetBillsSuccess = payload => {
+    return {
+        payload,
+        type: TYPES.GET_BILLS,
+    };
+};
+
 
 export const saveBill = (bill) => {
     return (dispatch) => {
@@ -26,6 +33,24 @@ export const saveBill = (bill) => {
     };
 
 }
+
+export const getBills = () => {
+    return (dispatch) => {
+        fetch(API.billing.getBills, {
+            method: 'GET'
+        }).then((response) => response.json())
+            .then((responseJson) => {
+                dispatch(onGetBillsSuccess(responseJson));
+            }
+            )
+            .catch(error => {
+                dispatch(onGetBillsSuccess({ title: "Error" }))
+            })
+    };
+
+}
+
+
 
 
 

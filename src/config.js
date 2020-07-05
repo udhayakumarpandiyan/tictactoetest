@@ -27,7 +27,8 @@ export const API = {
     getItems:`${PRODUCT}`
   },
   billing:{
-    save:`${BILLING}add`
+    save:`${BILLING}add`,
+    getBills:`${BILLING}`
   }
   
 };
