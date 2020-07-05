@@ -77,7 +77,7 @@ const TodaySalesForm = (props) => {
     }
 
     const goNext = (event) => {
-       // var item = { name: '' };
+        // var item = { name: '' };
         event.preventDefault();
         props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
@@ -96,7 +96,7 @@ const TodaySalesForm = (props) => {
     const goBack = () => {
 
     }
-    const addItem =(item) =>{
+    const addItem = (item) => {
         items.push(item);
         let total = items.reduce(
             (accumulator, currentValue) => accumulator + currentValue.price * currentValue.quantity
@@ -105,6 +105,24 @@ const TodaySalesForm = (props) => {
         setTotal(total);
         setItems(items);
 
+    }
+
+    const onSubmitClick = () => {
+        let bill = {
+            bill_number: 1,
+            billing_items: items,
+            billing_amount: total,
+            customer_type: 'customer',
+            paid_amount: total,
+            billing_date: new Date(),
+            customer_name: 'Murugan',
+            roundOff_amount: 0,
+            commission_amount: 0,
+            balance_amount: 0
+        }
+
+       console.log("Bill: ", bill);
+        props.onSubmitBill(bill);
     }
 
     return (
@@ -259,7 +277,7 @@ const TodaySalesForm = (props) => {
                         </div>
                     </div>
                     <div className="submit-container">
-                        <Button >SUBMIT BILL </Button>
+                        <Button onClick={onSubmitClick}>SUBMIT BILL </Button>
                     </div>
                 </div>
 

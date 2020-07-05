@@ -7,6 +7,7 @@ import PriceList from '../components/PriceList';
 
 import { connect } from 'react-redux';
 import { getItems } from '../../../store/actions/product';
+import { saveBill } from '../../../store/actions/billing';
 
 const Option = Select.Option;
 const { TabPane } = Tabs;
@@ -31,6 +32,10 @@ class Sales extends Component {
     getPriceList = () => {
 
     }
+    onSubmitBill = (bill) => {
+        this.props.saveBill(bill);
+    }
+
     render() {
         return (<div className="module_container">
             <label className="page-title">{`Sales`}</label>
@@ -39,7 +44,8 @@ class Sales extends Component {
                 <Col className="column">
                     <Tabs tabPosition={this.state.tabPosition}>
                         <TabPane tab="Billing" key="1">
-                            <TodaySales onQuantityChange={this.onQuantityChange} />
+                            <TodaySales onQuantityChange={this.onQuantityChange}
+                                onSubmitBill={this.onSubmitBill} />
                         </TabPane>
 
                         <TabPane tab="Sales-return" key="2">
@@ -60,8 +66,9 @@ class Sales extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        items: state.productReducer && state.productReducer.items
+        items: state.productReducer && state.productReducer.items,
+        saved: state.billingReducer && state.billingReducer.saved
     }
 }
 
-export default connect(mapStateToProps, { getItems })(Sales);
+export default connect(mapStateToProps, { getItems, saveBill })(Sales);

@@ -1,6 +1,7 @@
 
 const AUTH = process.env.REACT_APP_AUTH;
 const PRODUCT = process.env.REACT_APP_PRODUCT;
+const BILLING = process.env.REACT_APP_BILLING;
 
 export const AUTH_HEADER = token => ({ Authorization: `Token ${token}` });
 export const JWT_HEADER = token => ({ Authorization: `Bearer ${token}` });
@@ -24,6 +25,9 @@ export const API = {
     add:`${PRODUCT}add`,
     remove:`${PRODUCT}remove`,
     getItems:`${PRODUCT}`
+  },
+  billing:{
+    save:`${BILLING}add`
   }
   
 };
