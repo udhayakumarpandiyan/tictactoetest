@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Select, InputNumber, Button, Table, Input, Form } from 'antd';
+import { Select, InputNumber, Button, Table, Input, Form, Radio } from 'antd';
 import { getCurrentDate } from '../../../utils/index';
 
 const Option = Select.Option;
@@ -22,7 +22,7 @@ const columns = [
 
     {
         title: 'Amount',
-        render: (text, row) => <span style={{ textAlign: "right" }}>{row.quantity * row.price}</span>
+        render: (text, row) => <span style={{ textAlign: "right" }}>{Number((row.quantity * row.price).toFixed(2))}</span>
     }
 
 ];
@@ -46,13 +46,24 @@ const TodaySalesForm = (props) => {
     const [balance, changeBalance] = useState(undefined);
     const [items, setItems] = useState([]);
     const [total, setTotal] = useState(0);
+    const [customerType, setCustomerType] = useState('Customer');
     const [currentItem, setCurrentItem] = useState(undefined);
     const [item, setItem] = useState({ name: '', selling_price: 0 });
 
     let { getFieldDecorator } = props.form;
     let isDuplicateItem = false;
 
-    let billNumber = props.bills && props.bills.length > 0 ? Number(props.bills[props.bills.length - 1].bill_number) + 1 : 1;
+    const generateBillNumber = () => {
+        let billNumber = props.bills && props.bills.length > 0 ? Number(props.bills[props.bills.length - 1].bill_number) + 1 : 1;
+        let date = new Date();
+        let month = date.getMonth() + 1;
+        month = month > 9 ? month : `0${month}`;
+        let year = date.getFullYear() + '';
+        year = year.substr(2, 2);
+        billNumber = billNumber > 99 ? billNumber : billNumber > 9 ? `0${billNumber}` : `00${billNumber}`
+        billNumber = `${year}${month}${billNumber}`;
+        return billNumber;
+    }
 
     const onGenerateBill = () => {
         isDuplicateItem = false;
@@ -80,10 +91,12 @@ const TodaySalesForm = (props) => {
 
         props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
+                //let name = values.name +'-'+ values.code.splice(values.code.length -4, values.length-1)
                 let item = {
                     category: values.category,
                     quantity: values.quantity,
-                    name: values.code,
+                    code: values.code,
+                    name: values.name,
                     price: values.price,
                     totalPrice: values.quantity * values.price,
                     unit: values.unit
@@ -122,7 +135,7 @@ const TodaySalesForm = (props) => {
     const onSubmitClick = (event) => {
         setItems([]);
         let bill = {
-            bill_number: billNumber,
+            bill_number: generateBillNumber(),
             billing_items: items,
             billing_amount: total,
             customer_type: 'customer',
@@ -153,13 +166,36 @@ const TodaySalesForm = (props) => {
             let item = props.items.filter((item) => {
                 return item.code === value;
             })[0];
-            setItem(item);
+            if (item) {
+                console.log('Price', item);
+                item.selling_price = customerType === "Customer"  ? item.original_price + (item.original_price * item.profit_percentage / 100) : item.selling_price + item.selling_price * 10 / 100;
+                setItem(item);
+            }
         }
 
     }
+
+    const onCustomerChange = e => {
+        if (item.code) {
+            // let sellingPrice = e.target.value === "Customer" ? item.original_price + (item.original_price * item.profit_percentage / 100) :
+            //     (item.original_price + (item.original_price * item.profit_percentage / 100) + item.original_price * 10 / 100);
+
+            let sellingPrice = e.target.value === "Customer" ? item.original_price + (item.original_price * item.profit_percentage / 100) : item.selling_price + item.selling_price * 10 / 100;
+            item.selling_price = sellingPrice;
+            setItem(item);
+        }
+        setCustomerType(e.target.value)
+    };
+
+
     return (
         <div className="content_container">
             {!showBill ? <div className="sales">
+                <Radio.Group onChange={onCustomerChange} value={customerType} className="radio-group">
+                    <Radio value="Customer">Individual customer</Radio>
+                    <Radio value="Electrician">Electrician</Radio>
+                </Radio.Group>
+
                 <Form className="newitem-form">
                     <Form.Item label="Item category">
                         {getFieldDecorator('category', {
@@ -201,7 +237,7 @@ const TodaySalesForm = (props) => {
                                 mode="combobox" onChange={onCodeChange}
                                 name="code" type="code">
                                 {
-                                    props.items && props.items.map((item, index) => {
+                                    props.items && props.items.length > 0 && props.items.map((item, index) => {
                                         return (
                                             <Option key={item.code}>{item.code}</Option>
                                         )
@@ -222,6 +258,7 @@ const TodaySalesForm = (props) => {
 
                         })(
                             <Input name="name" type="name"
+                                disabled
                                 value={item && item.name}
                                 placeHolder="Name" />
                         )}
@@ -265,16 +302,19 @@ const TodaySalesForm = (props) => {
                         {getFieldDecorator('unit', {
                             rules: [{
                                 required: true, message: 'Please select unit',
-                                initialValue: currentItem && currentItem.unit
+                                initialValue: 'pieces'
                             },
                             ],
 
                         })(
-                            <Select placeholder="Piece(s)" defaultValue={0} type="unit" name="unit">
+                            <Select placeholder="Piece(s)"
+                                defaultValue={'pieces'}
+                                type="unit" name="unit">
                                 <Option key="pieces" value="pieces">Pieces</Option>
                                 <Option key="meters" value="meters">Meters</Option>
                                 <Option key="kg" value="kilograms">Kilogram</Option>
-                                <Option key="grams" value="grams">Product</Option>
+                                <Option key="dozens" value="grams">Dozens</Option>
+                                <Option key="grams" value="grams">Grams</Option>
                             </Select>
                         )}
 
@@ -307,7 +347,7 @@ const TodaySalesForm = (props) => {
 
                             </div>
                             <div className="bill-date-container">
-                                <label>Bill no : {billNumber} </label>
+                                <label>Bill no : {generateBillNumber()} </label>
                                 <label>Date : {getCurrentDate('-', 'DD/MM/YYYY')}</label>
                             </div>
                         </div>

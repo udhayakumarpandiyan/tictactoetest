@@ -91,7 +91,7 @@ const AddNewForm = (props) => {
             added_on: Date.now(),
             stock_quantity: item.quantity,
             gst: item.gst,
-            original_price: item.price,
+            original_price: itemDetails.originalPrice,
             profit_percentage: item.profit,
             selling_price: itemDetails.sellingPrice,
             order_alarm_when: 5,
@@ -241,7 +241,7 @@ const AddNewForm = (props) => {
                             onChange: (e) => onInputChange(e, 'price'),
                             initialValue: null
                         })(
-                            <InputNumber placeholder="Price" min={1} max={1000} />
+                            <InputNumber placeholder="Price" min={1} max={10000} />
                         )}
                     </Form.Item>
 

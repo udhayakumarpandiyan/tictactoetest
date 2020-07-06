@@ -32,32 +32,39 @@ const columns = [
         title: 'Item code',
         dataIndex: 'code',
         key: 'code',
-        ellipsis: true
     },
-    {
-        title: 'Category',
-        dataIndex: 'category',
-        key: 'category',
-    },
+    // {
+    //     title: 'Category',
+    //     dataIndex: 'category',
+    //     key: 'category',
+    // },
 
-    {
-        title: 'Brand',
-        dataIndex: 'brand',
-        key: 'brand',
-        ellipsis: true,
-    },
+    // {
+    //     title: 'Brand',
+    //     dataIndex: 'brand',
+    //     key: 'brand',
+    //     width: '60px',
+    // },
     {
         title: 'Price',
         dataIndex: 'original_price',
         key: 'original_price',
-        ellipsis: true,
+        render: (text, row) => {
+            let tex = new String(text);
+            let encodedValue = [];
+            for(let i= 0; i < tex.length; i++){
+                encodedValue[i] = codeKey[Number(tex[i])];
+            }
+            return(
+            <span>{encodedValue}</span>
+            )
+        }
     },
     {
         title: 'Price',
         dataIndex: 'selling_price',
         key: 'selling_price',
-        ellipsis: true,
-        render: (text, row) => <span>{`${text} / ${row.unit}`}</span>,
+        render: (text, row) => <span>{`${text}`}</span>,
 
 
     },
@@ -65,6 +72,8 @@ const columns = [
 ];
 
 const products = [{ name: "9W LED Bulb", code: "9WGoldMedal", category: "Electrical", brand: "Gold Medal", price: "90.00", unit: "piece" }];
+const codeKey = 'GMASTERPIN';
+
 
 const PriceList = (props) => {
     let defaultCategory = (categories && categories.length > 0) ? categories[0].name : null;
@@ -95,8 +104,8 @@ const PriceList = (props) => {
     return (
         <div className="pricelist-container">
             <div className="top-container">
-            <label>Filter by </label>
-                <div className="left-container"> 
+                <label>Filter by </label>
+                <div className="left-container">
                     <Select placeholder="Select Catergory"
                         defaultValue={defaultCategory}
                         className="dropdown"

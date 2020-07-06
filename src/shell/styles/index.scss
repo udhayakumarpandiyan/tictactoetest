@@ -297,12 +297,12 @@
 
             @include media-tab {
                 width: 100%;
-                padding: 20px 6px;
+                padding: 20px 0px;
             }
 
             @include media-mobile {
                 width: 100%;
-                padding: 20px 6px;
+                padding: 20px 0px;
             }
 
             height: 100%;

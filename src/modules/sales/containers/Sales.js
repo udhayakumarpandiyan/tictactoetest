@@ -25,9 +25,19 @@ class Sales extends Component {
         if (!this.props.items) {
             this.props.getItems();
         }
-        // if (!this.props.bills) {
-        this.props.getBills();
-        //}
+        if (!this.props.bills) {
+            this.props.getBills();
+        }
+    }
+    componentWillReceiveProps(nextProps) {
+
+        if (this.props.items !== nextProps.items) {
+
+        }
+        if (this.props.bills !== nextProps.bills) {
+
+        }
+
     }
     getPriceList = () => {
 
