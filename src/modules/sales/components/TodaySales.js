@@ -55,13 +55,7 @@ const TodaySalesForm = (props) => {
 
     const generateBillNumber = () => {
         let billNumber = props.bills && props.bills.length > 0 ? Number(props.bills[props.bills.length - 1].bill_number) + 1 : 1;
-        // let date = new Date();
-        // let month = date.getMonth() + 1;
-        // month = month > 9 ? month : `0${month}`;
-        // let year = date.getFullYear() + '';
-        // year = year.substr(2, 2);
         billNumber = billNumber > 99 ? billNumber : billNumber > 9 ? `0${billNumber}` : `00${billNumber}`
-       // billNumber = `${year}${month}${billNumber}`;
         return billNumber;
     }
 
@@ -83,7 +77,6 @@ const TodaySalesForm = (props) => {
     }
     const goBackToSalesEntry = () => {
         changeShowBill(false);
-        console.log("Item:", currentItem);
     }
 
     const goNext = (event) => {
@@ -91,15 +84,15 @@ const TodaySalesForm = (props) => {
 
         props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                //let name = values.name +'-'+ values.code.splice(values.code.length -4, values.length-1)
-                let item = {
+                let _item = {
                     category: values.category,
                     quantity: values.quantity,
                     code: values.code,
                     name: values.name,
                     price: values.price,
                     totalPrice: values.quantity * values.price,
-                    unit: values.unit
+                    unit: values.unit,
+                    id:item.id
                 }
                 items.forEach((item, index) => {
                     if (item.name === values.code) {
@@ -107,7 +100,7 @@ const TodaySalesForm = (props) => {
                     }
                 })
                 if (!isDuplicateItem) {
-                    addItem(item);
+                    addItem(_item);
 
 
                 }

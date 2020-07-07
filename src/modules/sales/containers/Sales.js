@@ -31,7 +31,8 @@ class Sales extends Component {
     }
     componentWillReceiveProps(nextProps) {
 
-        if (this.props.items !== nextProps.items) {
+        if (this.props.saved.billNumber !== nextProps.saved.billNumber) {
+           // this.props.getItems();
 
         }
         if (this.props.bills !== nextProps.bills) {
@@ -45,6 +46,7 @@ class Sales extends Component {
     onSubmitBill = (bill) => {
         this.props.saveBill(bill);
     }
+
 
     render() {
         return (<div className="module_container">
