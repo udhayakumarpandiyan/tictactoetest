@@ -36,7 +36,6 @@ const Header = (props) => {
 
             <Dropdown overlay={ProfileMenu}
                 overlayClassName="profile-dropdown"
-                overlayStyle={{ backgroundColor: '#ff00ff' }}
                 placement="bottomRight">
                 <div className="user_dropdown">
                     <img src={MyProfilePicIcon}></img>

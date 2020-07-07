@@ -173,7 +173,7 @@ class Shell extends Component {
                     <Button onClick={this.showDrawer} >
                         <Icon type="menu" style={{ color: "#ffffff", fontSize: '28px' }} />
                     </Button>
-                    <Drawer
+                    <Drawer className="drawer"
                         title={
                             <div className="profile_icon" style={{
                                 height: "72px", width: "72px",
@@ -199,13 +199,15 @@ class Shell extends Component {
                             height: "130px",
                             color: '#ffffff',
                             marginTop: "60px",
-                            backgroundColor: "#232f3e",
+                            backgroundColor: "#06264d",
                             borderBottom: "none",
+                            borderRadius:"0px"
                         }}
                         bodyStyle={{
                             padding: '0px',
                             overflowY:'hidden',
-                            backgroundColor: "#232f3e", height: "79.5%"
+                            backgroundColor: "#06264d", 
+                            height: "79.5%"
                         }}
                     >
                         <div className="menu_container">

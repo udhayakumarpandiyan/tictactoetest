@@ -55,13 +55,13 @@ const TodaySalesForm = (props) => {
 
     const generateBillNumber = () => {
         let billNumber = props.bills && props.bills.length > 0 ? Number(props.bills[props.bills.length - 1].bill_number) + 1 : 1;
-        let date = new Date();
-        let month = date.getMonth() + 1;
-        month = month > 9 ? month : `0${month}`;
-        let year = date.getFullYear() + '';
-        year = year.substr(2, 2);
+        // let date = new Date();
+        // let month = date.getMonth() + 1;
+        // month = month > 9 ? month : `0${month}`;
+        // let year = date.getFullYear() + '';
+        // year = year.substr(2, 2);
         billNumber = billNumber > 99 ? billNumber : billNumber > 9 ? `0${billNumber}` : `00${billNumber}`
-        billNumber = `${year}${month}${billNumber}`;
+       // billNumber = `${year}${month}${billNumber}`;
         return billNumber;
     }
 
@@ -323,13 +323,14 @@ const TodaySalesForm = (props) => {
                 </Form>
 
                 <div className="inner-container bottom">
-                    <Button onClick={goBack}> {`<< Previous item`} </Button>
-                    <Button onClick={goNext}> {`Next item >>`} </Button>
+                    <Button onClick={goBack}> {`<<`} </Button>
+                    <Button disabled={items.length === 0} onClick={onGenerateBill}>GENERATE BILL</Button>
+                    <Button onClick={goNext}> {`>>`} </Button>
                 </div>
 
-                <div className="submit-container">
+                {/* <div className="submit-container">
                     <Button disabled={items.length === 0} onClick={onGenerateBill}>GENERATE BILL</Button>
-                </div>
+                </div> */}
 
             </div>
                 :

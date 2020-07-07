@@ -84,6 +84,7 @@ const Sidebar = (props) => {
                         <Menu
                             mode="inline"
                             theme="dark"
+                            defaultSelectedKeys={['sales']}
                             inlineCollapsed={collapsed}
                             onClick={handleClick}>
 

@@ -6,7 +6,10 @@ const brands = [
     { name: "Gold Medal", code: "GML" },
     { name: "Fybros", code: "FYB" },
     { name: "GM", code: "GM" },
-    { name: "Legrand", code: "LEG" }
+    { name: "Legrand", code: "LEG" },
+    {
+        name: "Nil", code: ""
+    }
 ];
 
 const AddNewForm = (props) => {
@@ -58,10 +61,8 @@ const AddNewForm = (props) => {
 
     const showConfirmation = (values) => {
 
-        let originalPrice = values.price - (values.price * values.deduction / 100);
-        originalPrice = (Number(originalPrice + (originalPrice * values.gst / 100))).toFixed(2);
-
-        let sellingPrice=  (Number(originalPrice) +(Number(originalPrice * Number(values.profit)/100))).toFixed(2);
+        let originalPrice = values.price;
+        let sellingPrice = (Number(originalPrice) + (Number(originalPrice * Number(values.profit) / 100))).toFixed(2);
 
         let item = {
             code: setItemCode(values),
@@ -182,7 +183,7 @@ const AddNewForm = (props) => {
                             <Input placeholder="Item name" className="input" />
                         )}
                     </Form.Item>
-                    <Form.Item>
+                    {/* <Form.Item>
                         {getFieldDecorator('type', {
                             rules: [{
                                 required: false, message: 'Please select type of item ',
@@ -196,7 +197,7 @@ const AddNewForm = (props) => {
                             <Input placeholder="Item type" />
                         )
                         }
-                    </Form.Item>
+                    </Form.Item> */}
 
                     <Form.Item >
                         {getFieldDecorator('quantity', {
@@ -245,7 +246,7 @@ const AddNewForm = (props) => {
                         )}
                     </Form.Item>
 
-                    <Form.Item >
+                    {/* <Form.Item >
                         {getFieldDecorator('deduction', {
                             rules: [{
                                 required: false, message: 'Please enter deduction percentage',
@@ -258,8 +259,8 @@ const AddNewForm = (props) => {
                         })(
                             <InputNumber placeholder="Dedcution %" min={0} max={100} />
                         )}
-                    </Form.Item>
-                    <Form.Item >
+                    </Form.Item> */}
+                    {/* <Form.Item >
                         {getFieldDecorator('gst', {
                             rules: [{
                                 required: false, message: 'Please enter GST percentage',
@@ -272,7 +273,7 @@ const AddNewForm = (props) => {
                         })(
                             <InputNumber placeholder="GST %" min={0} max={30} />
                         )}
-                    </Form.Item>
+                    </Form.Item> */}
                     <Form.Item >
                         {getFieldDecorator('profit', {
                             rules: [{
