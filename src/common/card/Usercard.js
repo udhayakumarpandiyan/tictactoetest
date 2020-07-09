@@ -18,11 +18,11 @@ const Usercard = (props) => {
 
     return (<div className="usercard_container"
         onClick={onClick}>
-        <div className="top_content">
+        {/* <div className="top_content">
 
             <Switch className="active_switch" onClick={onSwitchClick}></Switch>
 
-        </div>
+        </div> */}
         <div className="card_content">
             <img>
             </img>

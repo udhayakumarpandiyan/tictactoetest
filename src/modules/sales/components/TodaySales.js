@@ -92,7 +92,7 @@ const TodaySalesForm = (props) => {
                     price: values.price,
                     totalPrice: values.quantity * values.price,
                     unit: values.unit,
-                    id:item.id
+                    id: item.id
                 }
                 items.forEach((item, index) => {
                     if (item.name === values.code) {
@@ -131,7 +131,7 @@ const TodaySalesForm = (props) => {
             bill_number: generateBillNumber(),
             billing_items: items,
             billing_amount: total,
-            customer_type: 'customer',
+            customer_type: customerType,
             paid_amount: amount,
             billing_date: new Date(),
             customer_name: 'Murugan',
@@ -154,6 +154,20 @@ const TodaySalesForm = (props) => {
         setCurrentItem(currentItem);
 
     }
+
+
+    const onQuantityValidate = (rule, value, callback) => {
+        if(value && item.stock_quantity === 0){
+            callback(`No items available in stock`);
+        }
+        if (value && value > item.stock_quantity) {
+            callback(`Only ${item.stock_quantity} items available in stock`);
+        }
+        else {
+            callback();
+        }
+    }
+
     const onCodeChange = (value) => {
         if (props.items) {
             let item = props.items.filter((item) => {
@@ -161,7 +175,7 @@ const TodaySalesForm = (props) => {
             })[0];
             if (item) {
                 console.log('Price', item);
-                item.selling_price = customerType === "Customer"  ? item.original_price + (item.original_price * item.profit_percentage / 100) : item.selling_price + item.selling_price * 10 / 100;
+                item.selling_price = customerType === "Customer" ? item.original_price + (item.original_price * item.profit_percentage / 100) : item.selling_price + item.selling_price * 10 / 100;
                 setItem(item);
             }
         }
@@ -268,7 +282,7 @@ const TodaySalesForm = (props) => {
                             ],
 
                         })(
-                            <Input name="price" type="price"
+                            <Input name="price" type="price" 
                                 value={item && item.selling_price}
                                 placeHolder="Price" />
                         )}
@@ -281,6 +295,9 @@ const TodaySalesForm = (props) => {
                                 required: true, message: 'Please enter quantity',
                                 /// intialValue: currentItem && currentItem.quantity 
                             },
+                            {
+                                validator: onQuantityValidate
+                            }
                             ],
 
                         })(
