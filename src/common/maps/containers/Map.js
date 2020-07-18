@@ -115,7 +115,6 @@ class Map extends React.Component {
             return this.state.selectedLocations.has(location.name);
         }
         else {
-            console.log(this.state.selectedLocation, location.name);
             return this.state.selectedLocation === location.name;
         }
     }

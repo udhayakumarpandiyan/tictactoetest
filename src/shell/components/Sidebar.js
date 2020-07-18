@@ -54,7 +54,6 @@ const Sidebar = (props) => {
                 break;
 
         }
-        console.log(path);
         RoutePath.redirect(path);
 
     }

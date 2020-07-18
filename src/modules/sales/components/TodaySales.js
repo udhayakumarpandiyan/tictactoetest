@@ -174,7 +174,6 @@ const TodaySalesForm = (props) => {
                 return item.code === value;
             })[0];
             if (item) {
-                console.log('Price', item);
                 item.selling_price = customerType === "Customer" ? item.original_price + (item.original_price * item.profit_percentage / 100) : item.selling_price + item.selling_price * 10 / 100;
                 setItem(item);
             }

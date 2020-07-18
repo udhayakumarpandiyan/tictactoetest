@@ -4,7 +4,6 @@ import '../sass/svg-map.css';
 import { getRanges } from '../utils';
 
 const assigningDataToLocation = (locations, data) => {
-	console.log("data :", locations, data);
 	if (data && data.locations) {
 		let dataLocations = data.locations;
 		let dataLength = dataLocations.length;

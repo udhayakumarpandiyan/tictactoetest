@@ -86,8 +86,6 @@ const Bills = (props) => {
     }
 
     const onCategorySelect = (value) => {
-        console.log("event : ", value);
-
         onCategoryChange(value);
 
     }
@@ -107,7 +105,7 @@ const Bills = (props) => {
                 </div>
             </div>
 
-            <Table dataSource={props.bills}
+            <Table dataSource={props.bills? props.bills:[]}
                 pagination={{ pageSize: 40 }}
                 columns={columns}
                 bordered

@@ -235,7 +235,6 @@ const products = [{
 ];
 
 const StockList = (props) => {
-    console.log('PRR', props.items);
     let defaultCategory = (categories && categories.length > 0) ? categories[0].name : null;
     let defaultBrand = (brands && brands.length > 0) ? brands[0].name : null;
 
@@ -300,7 +299,7 @@ const StockList = (props) => {
             </div>
 
 
-            <Table dataSource={props.items}
+            <Table dataSource={props.items ? props.items : []}
                 pagination={{ pageSize: 40 }}
                 columns={columns}
                 bordered

@@ -9,6 +9,12 @@ const brands = [
     { name: "Legrand", code: "LEG" },
     {
         name: "Nil", code: ""
+    },
+    {
+        name: "FlowKem", code: "FLO"
+    },
+    {
+        name: "Prince", code: "PRI"
     }
 ];
 
@@ -55,7 +61,6 @@ const AddNewForm = (props) => {
     }
     const addItem = () => {
         let item = reconstructData();
-        console.log("Item :", item);
         props.addNewItem(item);
     }
 
@@ -76,7 +81,13 @@ const AddNewForm = (props) => {
 
     const setItemCode = (item) => {
         if (item && item.name) {
-            let code = `${(item.name.slice(0, 11)).replace(/\s/g, "")}-${item.brand}`;
+            let code;
+            if (item.brand) {
+                code = `${(item.name.substr(0, 12)).replace(/\s/g, "")}-${item.brand.substr(0,3)}`;
+            }
+            else {
+                code = `${(item.name.substr(0, 12)).replace(/\s/g, "")}`;
+            }
             return code.toUpperCase();
         }
         return '';
@@ -88,14 +99,14 @@ const AddNewForm = (props) => {
             brand: item.brand,
             category: item.category,
             type: item.type,
-            dealer: "Ramalinga Periyar",
+            dealer: "Shivayogi",
             added_on: Date.now(),
             stock_quantity: item.quantity,
             gst: item.gst,
             original_price: itemDetails.originalPrice,
             profit_percentage: item.profit,
             selling_price: itemDetails.sellingPrice,
-            order_alarm_when: 5,
+            order_alarm_when: item.alertWhen,
             order_status: "Newly Added",
         }
     }
@@ -142,10 +153,12 @@ const AddNewForm = (props) => {
                             {
                                 validator: validateUserName
                             }],
+                            initialValue : "Plumbing"
 
                         })(
                             <Select placeholder="Item category">
                                 <Option key={'ELE'} value="Electrical">Electrical</Option>
+                                <Option key={'PLM'} value="Plumbing">Plumbing</Option>
                             </Select>
                         )}
                     </Form.Item>
@@ -157,6 +170,7 @@ const AddNewForm = (props) => {
                             {
                                 validator: validateUserName
                             }],
+                            initialValue:"FlowKem"
                         })(
 
                             <Select placeholder="Brand">
@@ -208,10 +222,10 @@ const AddNewForm = (props) => {
                                 validator: validateUserName
                             }],
                             onChange: (e) => onInputChange(e, 'quantity'),
-                            initialValue: null
+                            initialValue: 0
                         })(
 
-                            <InputNumber placeholder="Quantity" min={1} max={1000} />
+                            <InputNumber placeholder="Quantity" min={0} max={1000} />
                         )}
                     </Form.Item>
                     <Form.Item>
@@ -223,7 +237,7 @@ const AddNewForm = (props) => {
                                 validator: validateUserName
                             }],
                             onChange: (e) => onInputChange(e, 'unit'),
-                            initialValue: null
+                            initialValue: "Pieces"
                         })(
                             <Select placeholder="Units">
                                 <Option key={'ad'} value="Pieces">Pieces</Option>
@@ -240,9 +254,9 @@ const AddNewForm = (props) => {
                                 validator: validateUserName
                             }],
                             onChange: (e) => onInputChange(e, 'price'),
-                            initialValue: null
+                            initialValue: 0
                         })(
-                            <InputNumber placeholder="Price" min={1} max={10000} />
+                            <InputNumber defaultValue={0} placeholder="Price" min={1} max={10000} />
                         )}
                     </Form.Item>
 
@@ -283,9 +297,24 @@ const AddNewForm = (props) => {
                                 validator: validateUserName
                             }],
                             onChange: (e) => onInputChange(e, 'profit'),
-                            initialValue: null
+                            initialValue: 0
                         })(
-                            <InputNumber placeholder="Profit %" min={0} max={500} />
+                            <InputNumber defaultValue={0} placeholder="Profit %" min={0} max={500} />
+                        )}
+                    </Form.Item>
+
+                    <Form.Item >
+                        {getFieldDecorator('alertWhen', {
+                            rules: [{
+                                required: false, message: 'Please enter number',
+                            },
+                            {
+                                validator: validateUserName
+                            }],
+                            onChange: (e) => onInputChange(e, 'alertWhen'),
+                            initialValue: 5
+                        })(
+                            <InputNumber placeholder="Alert when item = " min={0} max={500} />
                         )}
                     </Form.Item>
                 </Form>

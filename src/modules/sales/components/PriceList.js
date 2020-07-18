@@ -94,8 +94,6 @@ const PriceList = (props) => {
     }
 
     const onCategorySelect = (value) => {
-        console.log("event : ", value);
-
         onCategoryChange(value);
 
     }
@@ -130,7 +128,7 @@ const PriceList = (props) => {
                 </div>
             </div>
 
-            <Table dataSource={props.items}
+            <Table dataSource={props.items ? props.items :[]}
                 pagination={{ pageSize: 40 }}
                 columns={columns}
                 bordered

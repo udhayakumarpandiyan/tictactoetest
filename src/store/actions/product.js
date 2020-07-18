@@ -26,7 +26,7 @@ const onAddItemSuccess = payload => {
 export const getItems = () => {
     return (dispatch) => {
         fetch(API.products.getItems, {
-            method: 'GET'
+            method: 'GET',
         }).then((response) => response.json())
             .then((responseJson) => {
                 dispatch(onGetItemSuccess(responseJson));
