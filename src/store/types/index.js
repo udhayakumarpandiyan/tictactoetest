@@ -1,10 +1,2 @@
-export const ON_LOAD = "ON_LOAD";
-export const ON_ERROR = "ON_ERROR";
-export const CHANGE_LANGUAGE = "CHANGE_LANGUAGE";
-export const LOGIN = "LOGIN";
-export const REGISTER ="REGISTER";
-export const GET_ITEMS ="GET_ITEMS";
-export const ADD_ITEM ="ADD_ITEM";
-export const REMOVE_ITEM = "REMOVE_ITEM";
-export const SAVE_BILL = "SAVE_BILL";
-export const GET_BILLS = "GET_BILLS";
+export const ADD_PLAYERS = "ADD_PLAYERS";
+export const UPDATE_PLAYERS = "UPDATE_PLAYERS";

@@ -1,11 +1,8 @@
 import { combineReducers } from 'redux'
-import languageReducer from './language';
-import authenticationReducer from './authentication';
-import productReducer from './product';
-import billingReducer from './billing';
+import gameReducer from './game';
 
 const rootReducer = combineReducers({
-    languageReducer, authenticationReducer, productReducer, billingReducer
+    gameReducer
 })
 
 export default rootReducer;

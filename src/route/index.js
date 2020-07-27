@@ -1,17 +1,7 @@
 import history from './history';
 
-
-const HOME_PAGE = `/`;
-const ADMIN = '/admin';
-const INVESTMENTS = "/investments";
-const DEALERS = "/dealers";
-const SALES = "/sales";
-const STOCK_DETAILS = "/stock_details";
-const REPORTS = "/reports";
-const SETTINGS = "/settings";
-
-//const TEMPLATE = "/ecard/template";
-
+const HOME_PAGE = '/home';
+const GAME_BOARD = `/game-board`;
 
 const redirect = (path, state) => {
     history.push(path, state);
@@ -20,13 +10,6 @@ const redirect = (path, state) => {
 export default {
     redirect: redirect,
     HOME_PAGE: HOME_PAGE,
-    ADMIN: ADMIN,
-    INVESTMENTS: INVESTMENTS,
-    DEALERS: DEALERS,
-    SALES: SALES,
-    STOCK_DETAILS:STOCK_DETAILS,
-    REPORTS: REPORTS,
-    SETTINGS: SETTINGS
-
+    GAME_BOARD: GAME_BOARD
 }
 

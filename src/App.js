@@ -1,11 +1,8 @@
 import React, { lazy, Suspense } from 'react';
 import './App.css';
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import rootReducer from './store/reducers';
-
-let store = createStore(rootReducer, applyMiddleware(thunk));
+import { PersistGate } from 'redux-persist/integration/react'
+import { persistor, store } from './store';
 
 function App() {
 
@@ -17,12 +14,12 @@ function App() {
       </div>}>
       <div className="App">
         <Provider store={store}>
-          <Shell />
+          <PersistGate loading={null} persistor={persistor}>
+            <Shell />
+          </PersistGate>
         </Provider>
-
       </div>
     </Suspense>
   );
 }
-
 export default App;

@@ -10,357 +10,127 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    background-color: rgba($color: $primaryColor, $alpha: 1);
+    .name-container{
+        position: absolute;
+        top: 60px;
+        left: 60px;
+        label{
+            display:block;
+            font-weight: bold;
+            color: $textColor;
+            letter-spacing: 0.3rem;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+    }
     
-    .signin_content {
+    .home_content {
         display: flex;
         width: 100%;
         height: 100vh;
         align-items: center;
         justify-content: center;
-    }
-    .signup_content {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        justify-content: center;
-    }
 
+    }
     .outer-container{
-        width: 24%;
-        @include media-mobile {
-            width: 86%;
-        }
-
-        @include media-tab {
-            width: 86%;
-        }
-
-        @include media-desktop-sm {
-            width: 100%;
-        }
-        margin : 10% 0px 20% 0px;
-        padding: 30px 20px 20px 20px;
-        background-color: #ffffff;
-        border-radius: 4px;
-        border: 0.5px solid rgba(4, 53, 99,0.5);;
-        box-shadow: 1px 1px 10px 2px rgba(4, 53, 99,0.4);
-        @include media-mobile {
-            border: none;
-            box-shadow: none;
-            justify-content: flex-start;
-        }
-        @include media-tab {
-            border: none;
-            box-shadow: none;
-            justify-content: flex-start;
-        }
-
+        width: 480px;
+        height: 480px;
+        margin : transform(10%,10%);
+        padding: 12px;
+        background-color: transparent;
+        border: 2px dashed rgba($color: #ffffff, $alpha: 0.11);
+        border-radius: 46px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
 
-        .signin_container {
+        .home_container {
             width: 100%;
+            height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            .form{
-                width: 90%;
-                .ant-form-item{
-                    width: 100%;
-                    margin-bottom: 10px;
-                    .ant-form-explain{
-                        display: flex;
-                        padding-left: 32px;
+            background-color: $borderColor;
+            padding: 30px 50px;
+            border-radius: 46px;
+
+            .title-container{
+                width: 100%;
+                padding-left: 20px;
+                padding-bottom: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                label{
+                    font-size: 24px;
+                    color: $textColor;
+                    span{
+                        color: $secondaryColor;
+                        text-transform: uppercase;
+                        font-weight: 600;
                     }
                 }
+            }
+
+            .form{
+                width: 100%;
+                
+                .form-item{
+                    label{
+                        display: inline-block;
+                        width: 100%;
+                        text-align: left;
+                        text-transform: uppercase;
+                        font-size: 12px;
+                    }
+                    input{
+                        color: $textColor;
+                        font-size: 16px;
+                        width: 100%;
+                        margin: 5px 0px;
+                        height: 42px;
+                        border-radius: 4px;
+                        padding-right: 30px;
+                        background-color: transparent;
+                        border: 1px solid $textColor;
+                    }
+                    width: 100%;
+                    margin-bottom: 10px;
+                    color: $textColor;
+                    .error-hidden{
+                        visibility: hidden;;
+                    }
+                    .error{
+                        visibility: visible;
+                        text-transform: none;
+                        color: #ff0000;
+                    }
+
+                }
+            }
                 .button-container{
                     width: 100%;
                     display: flex;
                     justify-content: center;
-                    .ant-form-item-control{
-                        display: flex;
-                        justify-content: center;
+                    .continue-button {
+                        margin: 24px 0px;
+                        height: 42px;
+                        width: 100%;
+                        border: none;
+                        border-radius: 2px;
+                        color: $textColor;
+                        background-image: linear-gradient(90deg, $buttonColor 0, $secondaryColor);
+                        box-shadow: 0 0px 4px 1px rgba($color: #000000, $alpha: 0.4);
+                        font-weight: 600;
                     }
-                }
-            }
-            
-            .logo-container{
-                width: 100%;
-                padding-left: 20px;
-                padding-bottom: 20px;
-                color: $secondaryColor;
-                font-style: oblique;
-                display: flex;
-                justify-content: flex-start;
-                align-items: center;
-                @include media-mobile{
-                   font-size: 26px;
-                }
-                @include media-tab{
-                    font-size: 26px;
-                 }
-                .logo{
-                    object-fit: contain;
-                    width: 48px;
-                    height: 40px;
-                    @include media-mobile{
-                        width: 72px;
-                        height: 60px;
-                    }
-                    @include media-tab{
-                        width: 72px;
-                        height: 60px;
-                    }
-                }
-            }
-
-            input {
-                @extend .text_input;
-                width: 100%;
-                margin: 10px 0px;
-                height: 36px;
-                border-radius: 4px;
-                padding-right: 30px;
-                @include media-mobile{
-                    height: 36px;
-                    font-size: 16px;
-                    
-                 }
-                 @include media-tab{
-                    height: 36px;
-                    font-size: 16px;
-                 }
-            }
-
-            .button {
-                @extend .button;
-                margin: 24px 0px;
-                width: 110px;
-                background: linear-gradient($primaryColor, $secondaryColor);
-                text-transform: uppercase;
-                font-weight: 600;
-                @include media-mobile{
-                    width: 130px;
-                    height: 42px;
-                    font-size: 16px;
-                    
-                 }
-            }
-
-                .forgot {
-                    display: block;
-                    float: right;
-                    padding-left: 60px;
-                    cursor: pointer;
-                    text-align: right;
-                    color: $secondaryColor;
-                    font-weight: 500;
-                }
-
-                .forgot:hover {
-                    color: $primaryColor;
-                    text-decoration: underline;
-                }
-
-               
-
-            .signup_now {
-                font-size: 14px;
-                @include media-mobile{
-                    font-size: 16px;
-                 }
-
-                span {
-                    font-size: 14px;
-                    @include media-mobile{
-                        font-size: 16px;
-                     }
-                    font-weight: 500;
-                    cursor: pointer;
-                    padding-left: 10px;
-                    color: $secondaryColor;
-                    font-weight: bold;
-                
-                }
-
-                span:hover {
-                    text-decoration: underline;
                 }
             
-        }
-
-        }
-    }
-
-
-    .signup_outer_container{
-        width: 40%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 50px 20px;
-        background-color: #ffffff;
-        
-
-        @include media-mobile {
-            width: 100%;
-            margin: 0px;
-            //height: 100%;
-        }
-
-        @include media-tab {
-            width: 100%;
-            margin: 0px;
-        }
-        
-        padding: 30px 20px 50px 20px;
-        border-radius: 4px;
-        box-shadow: 1px 1px 10px 2px rgba(4, 53, 99,0.8);
-        .signup_container{
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            align-items: center;
-
-            .logo-container{
-                width: 100%;
-                padding-left: 20px;
-                padding-bottom: 20px;
-                color: $secondaryColor;
-                font-style: oblique;
-                display: flex;
-                justify-content: flex-start;
-                align-items: center;
-                @include media-mobile{
-                    font-size: 36px;
-                }
-                @include media-tab{
-                    font-size: 36px;
-                }
-                .logo{
-                    object-fit: contain;
-                    width: 48px;
-                    height: 40px;
-                    @include media-mobile{
-                        width: 96px;
-                        height: 80px;
-                    }
-                    @include media-tab{
-                        width: 96px;
-                        height: 80px;
-                    }
-                }
-            }
-            .button {
-                @extend .button;
-                margin: 24px 20px;
-                width: 110px;
-                background: linear-gradient($primaryColor, $secondaryColor);
-                text-transform: uppercase;
-                font-weight: 600;
-                @include media-mobile{
-                    width: 130px;
-                    height: 42px;
-                    font-size: 16px;
-                    
-                 }
-            }
-            .back-button{
-                @extend .button;
-                margin: 24px 20px;
-                width: 110px;
-                border: 1px solid $primaryColor;
-                color: $primaryColor;
-                background: #ffffff;
-                text-transform: uppercase;
-                font-weight: 600;
-
-            }
-            form{
-                width: 100%;
-            .ant-form-item{
-                display: flex;
-                width: 100%;
-                //align-items: center;
-                .ant-form-item-label{
-                    width: 200px;
-                    margin-top: -4px;
-                    text-align: right;
-                    padding-right: 15px;
-
-                    @include media-mobile {
-                        margin-top: 0px;
-                        padding-top: 4px;
-                    }
-                    @include media-tab {
-                        margin-top: 0px;
-                        padding-top: 4px;
-                    }
-
-                }
-                .ant-form-item-control-wrapper{
-                    width: 100%;
-                 }
-                }
-            }
-            .inner_container{
-                width: 100%;
-                display: flex;
-                flex-wrap: wrap;
-                align-items: center;
-                justify-content: center;
-                padding: 15px 10px;
-                .label{
-                    width: 160px;
-                    text-align: right;
-                    font-size: 16px;
-                    @include media-mobile {
-                        text-align: left;
-                    }
             
-                    @include media-tab {
-                        text-align: left;
-                    }
-                }
-                input {
-                    @extend .text_input;
-                    width: 200px;
-                    @include media-mobile {
-                        width: 80%;
-                    }
-            
-                    @include media-tab {
-                        width: 66%;
-                    }
-                    margin: 10px 20px;
-                    height: 36px;
-                    border-radius: 4px;
-                }
-                .dropdown{
-                    width: 200px;
-                    @include media-mobile {
-                        width: 80%;
-                    }
-            
-                    @include media-tab {
-                        width: 66%;
-                    }
-                    height: 18px;
-                    margin: 12px 20px 20px 12px;
-
-                }
-                
-                
-            }
         }
-}
-}
-.ant-form-item-children{
-    display: flex;
-    align-items: center;
+    }           
+       
 }
