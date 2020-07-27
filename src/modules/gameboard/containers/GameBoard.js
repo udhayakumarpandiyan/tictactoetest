@@ -5,10 +5,6 @@ import Board from '../components/Board';
 import Player from '../components/Player';
 import { updatePlayers } from '../../../store/actions/game';
 
-// const playersList = [{ index: 0, name: "Udhaya", wins: 0, symbol: "x", result: null },
-// { index: 1, name: "Kumar", wins: 0, symbol: "o", result: null }];
-
-
 const winningPoints = [
     [0, 1, 2],
     [3, 4, 5],
@@ -22,21 +18,15 @@ const winningPoints = [
 
 const GameBoard = (props) => {
     const [currentPlayer, setCurrentPlayer] = useState(0);
-   // const [players, setPlayers] = useState(playersList);
     const [gameWinner, setGameWinner] = useState(undefined);
+    const [isGameActive, setGameStatus] = useState(true)
     const [result, setResult] = useState('');
 
-    
     const players = useSelector(state => state.gameReducer && state.gameReducer.players);
     const dispatch = useDispatch();
 
-
-
     function onCellClick(cells, step) {
         let player = players[currentPlayer]
-        // if (player && player.wins <= 6) {
-        //     player.wins++;
-        // }
         let currPlayer = currentPlayer === 0 ? 1 : 0;
         setCurrentPlayer(currPlayer);
 
@@ -71,10 +61,18 @@ const GameBoard = (props) => {
             else {
                 players[1].wins += 1;
             }
+
             setGameWinner(winner);
             setResult('won');
             dispatch(updatePlayers(players));
 
+            if (players[0].wins === 6 || players[1].wins === 6) {
+                setGameWinner(players[0].wins === 6 ? players[0] : players[1]);
+                setGameStatus(false);
+                players[0].wins = 0;
+                players[1].wins = 0;
+                setResult('continue');
+            }
             return;
         }
         else {
@@ -83,16 +81,31 @@ const GameBoard = (props) => {
 
 
     }
+    const onPlayNext = () => {
+        setGameWinner(null);
+        setResult('continue');
+    }
 
     return (<div className="board_page" >
-        <Player player={players[0]} winner={gameWinner}
+        <div className="name-container">
+            <label>Tic</label>
+            <label>Tac</label>
+            <label>Toe</label>
+        </div>
+
+        {isGameActive && <Player player={players[0]} winner={gameWinner}
             result={result} currentPlayer={currentPlayer} />
+        }
         <Board players={players} onCellClick={onCellClick}
             result={result}
+            gameStatus={isGameActive}
             currentPlayer={currentPlayer}
-            winner={gameWinner} />
-        <Player player={players[1]} winner={gameWinner}
+            winner={gameWinner}
+            onPlayNext={onPlayNext} />
+
+        {isGameActive && <Player player={players[1]} winner={gameWinner}
             result={result} currentPlayer={currentPlayer} />
+        }
 
     </div>)
 

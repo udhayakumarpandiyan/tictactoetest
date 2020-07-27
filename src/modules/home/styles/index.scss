@@ -11,19 +11,7 @@
     align-items: center;
     justify-content: center;
     background-color: rgba($color: $primaryColor, $alpha: 1);
-    .name-container{
-        position: absolute;
-        top: 60px;
-        left: 60px;
-        label{
-            display:block;
-            font-weight: bold;
-            color: $textColor;
-            letter-spacing: 0.3rem;
-            font-size: 16px;
-            text-transform: uppercase;
-        }
-    }
+
     
     .home_content {
         display: flex;
@@ -133,4 +121,17 @@
         }
     }           
        
+}
+.name-container{
+    position: absolute;
+    top: 60px;
+    left: 60px;
+    label{
+        display:block;
+        font-weight: bold;
+        color: $textColor;
+        letter-spacing: 0.3rem;
+        font-size: 16px;
+        text-transform: uppercase;
+    }
 }

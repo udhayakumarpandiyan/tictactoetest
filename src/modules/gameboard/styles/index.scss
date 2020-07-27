@@ -74,6 +74,13 @@
                         background: transparent;
                     }
                 }
+                // .player1{
+                //     cursor: url("../../../assets/icons/close.svg"), auto;	
+                // }
+                // .player2{
+                //     cursor: url("../../../assets/icons/x.svg"), auto;
+                // }
+                
                 
             }
 
@@ -166,6 +173,39 @@
                 
                 
             }
+        }
+    }
+    .winner{
+        width: 200px;
+        font-size: 32px;
+        color: $textColor;
+        text-transform: uppercase;
+        
+        .player{
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: $borderColor;
+            padding: 30px 30px; 
+            border: 3px solid $secondaryColor;
+            border-radius: 46px;
+        }
+        
+        .playerNumber{
+            font-size: 16px;
+            color: $secondaryColor;
+            text-transform: uppercase;
+            
+        }
+        .name{
+            color: $textColor;
+            font-size: 20px;
+        }
+        .symbol{
+            color: $textColor;
+            font-size: 76px;
         }
     }
      
