@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Player from './Player';
 
 const tableCells = [{ player: "", symbol: "" },
 { player: "", symbol: "" },
@@ -30,7 +29,7 @@ const Board = (props) => {
     }
     const onPlayNext = () => {
         let cells = [];
-        tableCells.forEach((cell, index) => {
+        tableCells.forEach((cell) => {
             cell.symbol = "";
             cell.player = "";
             cells.push({ player: "", symbol: "" });
@@ -46,7 +45,7 @@ const Board = (props) => {
                 <div className="board-container" onClick={onCellClick}>
                     {props.gameStatus ? cells && cells.map((cell, index) => {
                         return (
-                            <div id={index} className="cell player1">
+                            <div id={index} className="cell">
                                 <label>{cell.symbol}</label>
                             </div>
 

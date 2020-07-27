@@ -1,8 +1,9 @@
 {
-  "name": "track",
-  "homepage": "https://udhayakumarpandiyan.github.io/track",
+  "name": "tictactoetest",
+  "homepage": "https://udhayakumarpandiyan.github.io/tictactoetest/",
   "version": "0.1.0",
   "private": true,
+  "author": "Udhayakumar",
   "dependencies": {
     "@material-ui/core": "^4.9.13",
     "antd": "^3.25.2",
@@ -15,6 +16,7 @@
     "react-dom": "^16.9.0",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.0.1",
+    "react-router-redux": "^4.0.8",
     "react-scripts": "3.1.1",
     "redux": "^4.0.4",
     "redux-persist": "^6.0.0",

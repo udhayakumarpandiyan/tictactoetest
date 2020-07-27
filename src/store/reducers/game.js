@@ -1,4 +1,4 @@
-import { ADD_PLAYERS } from "../types";
+import { ADD_PLAYERS, UPDATE_PLAYERS } from "../types";
 const initialState = {
     players: [{ index: 0, name: "", wins: 0, symbol: "x", result: null },
     { index: 1, name: "", wins: 0, symbol: "o", result: null }]
@@ -7,7 +7,12 @@ const initialState = {
 export default function game(state = initialState, action) {
     switch (action.type) {
         case ADD_PLAYERS:
-            return{
+            return {
+                ...state,
+                players: action.payload
+            }
+        case UPDATE_PLAYERS:
+            return {
                 ...state,
                 players: action.payload
             }

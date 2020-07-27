@@ -1,7 +1,7 @@
 import history from './history';
 
 const HOME_PAGE = '/home';
-const GAME_BOARD = `/game-board`;
+const GAME_BOARD = '/titactoetest/game-board';
 
 const redirect = (path, state) => {
     history.push(path, state);

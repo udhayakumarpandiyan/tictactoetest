@@ -11,7 +11,7 @@ const HomePage = (props) => {
             <label>Toe</label>
         </div>
         <div className="home_content">
-            <Home startGame={this.startGame} />
+            <Home/>
         </div>
 
     </div>)
