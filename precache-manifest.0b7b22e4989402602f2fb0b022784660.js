@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7f6d05af98b7997084e7924359af5069",
+    "revision": "6164e49fe34005d6674099e440b43f4f",
     "url": "/tictactoetest/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/tictactoetest/static/css/2.0ef43664.chunk.css"
   },
   {
-    "revision": "2a9a100c1ac276df670b",
+    "revision": "1af4e713136a8f19a833",
     "url": "/tictactoetest/static/css/4.e3c78911.chunk.css"
   },
   {
@@ -24,16 +24,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/tictactoetest/static/js/3.b0c24304.chunk.js"
   },
   {
-    "revision": "2a9a100c1ac276df670b",
-    "url": "/tictactoetest/static/js/4.2f4f73ff.chunk.js"
+    "revision": "1af4e713136a8f19a833",
+    "url": "/tictactoetest/static/js/4.bf00bffc.chunk.js"
   },
   {
     "revision": "e59f7cc617e5fb8b8947",
     "url": "/tictactoetest/static/js/main.6deeaf74.chunk.js"
   },
   {
-    "revision": "8badf71f95f7c67fa5c5",
-    "url": "/tictactoetest/static/js/runtime~main.9cffdb52.js"
+    "revision": "0bed51aeeb8e8a43a79d",
+    "url": "/tictactoetest/static/js/runtime~main.87588062.js"
   },
   {
     "revision": "52ee8b598488b1ffbaa93e50cbd6a2f4",
